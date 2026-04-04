@@ -1,13 +1,15 @@
 import React from "react"; 
+import { useNavigate } from "react-router-dom";
 export default function App(){ 
+  const navigate = useNavigate();
   return ( <div style={styles.page}>
 
       {/* Navbar */}
       <div style={styles.nav}>
         <h2 style={styles.logo}>🚌 BusVoyage</h2>
         <div>
-          <button style={styles.loginBtn}>Login</button>
-          <button style={styles.registerBtn}>Register</button>
+          <button style={styles.loginBtn} onClick={() => navigate("/login")}>Login</button>
+          <button style={styles.registerBtn} onClick={() => navigate("/register")}>Register</button>
         </div>
       </div>
 
@@ -34,7 +36,7 @@ export default function App(){
             Track buses in real-time, check routes, and stay updated easily.
           </p>
 
-          <button style={styles.heroBtn}>Get Started</button>
+          <button style={styles.heroBtn} onClick={() => navigate("/register")}>Get Started</button>
         </div>
       </section>
 
