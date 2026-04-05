@@ -3,22 +3,48 @@
 body {
   background: #F8F9FA;
   color: #2D2D2D;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
 }
 
-@keyframes moveBus {
-  0% { left: 110%; }
-  100% { left: -500px; }
+.hero-bus {
+  position: absolute !important;
+  bottom: 5px !important;
+  width: 360px !important;
+  height: 80px !important;
+  object-fit: contain !important;
+  z-index: 9 !important;
+  filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5)) !important;
+  animation: busDrive 11s linear infinite !important;
 }
 
-.bus-animate {
+
+@keyframes busDrive {
+  0%   { left: 105%; }
+  100% { left: -380px; }
+}
+
+.road-dash {
   position: absolute;
-  bottom: 30px;
-  width: 400px;
-  animation: moveBus 10s linear infinite;
+  top: 50%;
+  left: 0;
+  width: 200%;
+  height: 5px;
+  margin-top: -2.5px;
+  background: repeating-linear-gradient(
+    to right,
+    rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.8) 55px,
+    transparent 55px, transparent 110px
+  );
+  animation: dashMove 0.9s linear infinite;
 }
+
+@keyframes dashMove {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-110px); }
+}
+
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-18px); }
   100% { transform: translateY(0px); }
 }
