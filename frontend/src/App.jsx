@@ -3,6 +3,8 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import StudentDashboard from "./Pages/StudentDashboard";
+import Driver from "./Pages/Driver";
+import Admin from "./Pages/Admin";
 
 export default function App() {
   return (
@@ -12,6 +14,8 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/student-dashboard" element={<StudentDashboard />} />
+        <Route path="/driver" element={<Driver />} />
+           <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );
