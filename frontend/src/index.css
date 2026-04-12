@@ -13,8 +13,8 @@ body {
   height: 80px !important;
   object-fit: contain !important;
   z-index: 9 !important;
-  filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5)) !important;
-  animation: busDrive 11s linear infinite !important;
+  filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5));
+  animation: busDrive 11s linear infinite ;
 }
 
 
