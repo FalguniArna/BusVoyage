@@ -22,7 +22,7 @@ export default function LostFound() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const fetchItems = () => {
-    axios.get("http://localhost:5000/api/lostfound")
+    axios.get("${import.meta.env.VITE_API_URL}/api/lostfound")
       .then(res => { setItems(res.data); setLoading(false); })
       .catch(() => setLoading(false));
   };
@@ -39,7 +39,7 @@ export default function LostFound() {
     }
     setSubmitting(true);
     try {
-      await axios.post("http://localhost:5000/api/lostfound", {
+      await axios.post("${import.meta.env.VITE_API_URL}/api/lostfound", {
         ...form,
         studentId: user.studentId,
         studentName: user.name,
@@ -58,7 +58,7 @@ export default function LostFound() {
 
   const handleFoundIt = async (id) => {
     try {
-      await axios.patch(`http://localhost:5000/api/lostfound/${id}/status`, { status: "Found" });
+      await axios.patch(`${import.meta.env.VITE_API_URL}/api/lostfound/${id}/status`, { status: "Found" });
       fetchItems();
     } catch {
       alert("Failed to update status.");

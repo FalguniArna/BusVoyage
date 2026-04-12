@@ -17,7 +17,7 @@
 //     setLoading(true);
 //     setError("");
 //     try {
-//       const res = await axios.post("http://localhost:5000/api/auth/login", formData);
+//       const res = await axios.post("${import.meta.env.VITE_API_URL}/api/auth/login", formData);
 //       localStorage.setItem("token", res.data.token);
 //       localStorage.setItem("user", JSON.stringify(res.data.user));
 
@@ -79,8 +79,6 @@
 
 
 
-
-
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
@@ -100,7 +98,7 @@ export default function Login() {
     setLoading(true);
     setError("");
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", formData);
+      const res = await axios.post("${import.meta.env.VITE_API_URL}/api/auth/login", formData);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 

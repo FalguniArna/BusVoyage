@@ -16,7 +16,7 @@ export default function BusTracking() {
 
   const fetchBuses = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/buses");
+      const res = await axios.get("${import.meta.env.VITE_API_URL}/api/buses");
       const active = res.data.filter(
         b => b.isActive === true || b.isActive === "true"
       );
