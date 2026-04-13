@@ -1,569 +1,3 @@
-// import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import BusTracking    from "./BusTracking";
-// import RoutesSchedule from "./RoutesSchedule";
-// import Announcements  from "./Announcements";
-// import Complaints     from "./Complaints";
-// import LostFound      from "./LostFound";
-
-// export default function StudentDashboard() {
-//   const navigate = useNavigate();
-//   const [user, setUser] = useState(null);
-//   const [activeMenu, setActiveMenu] = useState("dashboard");
-//   const [time, setTime] = useState(new Date());
-
-//   useEffect(() => {
-//     const savedUser = localStorage.getItem("user");
-//     if (!savedUser) { navigate("/login"); return; }
-//     const parsed = JSON.parse(savedUser);
-//     if (parsed.role !== "student") { navigate("/login"); return; }
-//     setUser(parsed);
-//   }, []);
-
-//   useEffect(() => {
-//     const timer = setInterval(() => setTime(new Date()), 1000);
-//     return () => clearInterval(timer);
-//   }, []);
-
-//   const handleLogout = () => {
-//     localStorage.removeItem("token");
-//     localStorage.removeItem("user");
-//     navigate("/login");
-//   };
-
-//   const getGreeting = () => {
-//     const h = time.getHours();
-//     if (h < 12) return "Good morning";
-//     if (h < 17) return "Good afternoon";
-//     if (h < 20) return "Good evening";
-//     return "Good night";
-//   };
-
-//   const formatTime = (d) =>
-//     d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
-
-//   const formatDate = (d) =>
-//     d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
-
-//   if (!user) return null;
-
-//   const navItems = [
-//     { id: "dashboard", icon: "⊞", label: "Dashboard", section: "Overview" },
-//     { id: "tracking", icon: "◎", label: "Bus Tracking", section: "Features" },
-//     { id: "routes", icon: "≡", label: "Routes & Schedule", section: "Features" },
-//     { id: "announcements", icon: "📢", label: "Announcements", badge: 1, section: "Features" },
-//     { id: "complaints", icon: "🧾", label: "Complaints", section: "Features" },
-//     { id: "lostfound", icon: "🎒", label: "Lost & Found", section: "Features" },
-//     { id: "profile", icon: "◻", label: "My Profile", section: "Account" },
-//   ];
-
-
-//   const initials = user.name
-//     ? user.name.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase()
-//     : "ST";
-
-//   // ── Page title for topbar based on active menu ──
-//   const pageTitles = {
-//     dashboard: `👋 ${getGreeting()}, ${user.name.split(" ")[0]}!`,
-//     tracking: "🚌 Bus Tracking",
-//     routes: "📅 Routes & Schedule",
-//     announcements: "📢 Announcements",
-//     complaints: "🧾 Complaints",
-//     lostfound: "🎒 Lost & Found",
-//     profile: "◻ My Profile",
-//   };
-
-//   // ── Placeholder component for pages not built yet ──
-//   const ComingSoon = ({ title, icon }) => (
-//     <div style={styles.comingSoon}>
-//       <div style={styles.comingSoonIcon}>{icon}</div>
-//       <h3 style={styles.comingSoonTitle}>{title}</h3>
-//       <p style={styles.comingSoonText}>This section is coming soon!</p>
-//     </div>
-//   );
-
-//   // ── Render content based on active menu ──
-//   const renderContent = () => {
-//     switch (activeMenu) {
-
-//       case "tracking":      return <BusTracking />;
-//       case "routes":        return <RoutesSchedule />;
-//       case "announcements": return <Announcements />;
-//       case "complaints":    return <Complaints />;
-//       case "lostfound":     return <LostFound />;
-//       case "profile":       return <ComingSoon title="My Profile" icon="◻" />;
-
-//       default:
-//   return (
-//     <>
-//       {/* Welcome Banner */}
-//       <div style={styles.welcome}>
-//         <div style={styles.sky}>
-//           <div style={styles.sun} />
-//           <div style={styles.cloud1} />
-//           <div style={styles.cloud2} />
-//         </div>
-//         <div style={styles.welcomeOverlay}>
-//           <div style={styles.welcomeLeft}>
-//             <div style={styles.welcomeGreeting}>Ready to ride today? 🚀</div>
-//             <div style={styles.welcomeMsg}>
-//               Grab your bag, it's almost here!
-//             </div>
-//           </div>
-//           <div style={styles.welcomeTimer}>
-//             <div style={styles.timerLabel}>Next departure</div>
-//             <div style={styles.timerVal}>07:45</div>
-//             <div style={styles.timerRoute}>Tilagor Route</div>
-//           </div>
-//         </div>
-//         <div style={styles.road}>
-//           <div style={styles.roadLine} />
-//           <div style={styles.metroBus}>🚌</div>
-//           <div style={styles.brtcBus}>🚎</div>
-//         </div>
-//       </div>
-
-//       {/* Quick Access Cards */}
-//       <div style={styles.sectionTitle}>Quick Access</div>
-//       <div style={styles.cards}>
-//         {[
-//           {
-//             id: "tracking", icon: "🗺️", iconBg: "#eff6ff",
-//             title: "Bus Tracking",
-//             desc: "Live location + crowd status",
-//             chip: "Live", chipBg: "#dcfce7", chipColor: "#166534",
-//             link: "Track now →"
-//           },
-//           {
-//             id: "routes", icon: "📅", iconBg: "#fefce8",
-//             title: "Routes & Schedule",
-//             desc: "Full timetable and stop details",
-//             chip: "3 Routes", chipBg: "#f1f5f9", chipColor: "#475569",
-//             link: "View →"
-//           },
-//           {
-//             id: "announcements", icon: "📢", iconBg: "#fff7ed",
-//             title: "Announcements",
-//             desc: "Notices from transport office",
-//             chip: "0 New", chipBg: "#fef3c7", chipColor: "#92400e",
-//             link: "Read →"
-//           },
-//           {
-//             id: "lostfound", icon: "🎒", iconBg: "#f5f3ff",
-//             title: "Lost & Found",
-//             desc: "Left something on the bus?",
-//             chip: "Search", chipBg: "#f1f5f9", chipColor: "#475569",
-//             link: "Search →"
-//           },
-//         ].map((card) => (
-//           <div
-//             key={card.id}
-//             style={styles.card}
-//             onClick={() => setActiveMenu(card.id)}
-//             onMouseEnter={e => {
-//               e.currentTarget.style.transform = "translateY(-4px)";
-//               e.currentTarget.style.borderColor = "#93c5fd";
-//               e.currentTarget.style.boxShadow = "0 8px 24px rgba(59,130,246,0.12)";
-//             }}
-//             onMouseLeave={e => {
-//               e.currentTarget.style.transform = "translateY(0)";
-//               e.currentTarget.style.borderColor = "#e2e8f0";
-//               e.currentTarget.style.boxShadow = "none";
-//             }}
-//           >
-//             <div style={styles.cardHead}>
-//               <div style={{ ...styles.cardIcon, background: card.iconBg }}>
-//                 {card.icon}
-//               </div>
-//               <div style={{
-//                 ...styles.cardChip,
-//                 background: card.chipBg,
-//                 color: card.chipColor
-//               }}>
-//                 {card.chip}
-//               </div>
-//             </div>
-//             <div style={styles.cardTitle}>{card.title}</div>
-//             <div style={styles.cardDesc}>{card.desc}</div>
-//             <div style={styles.cardLink}>{card.link}</div>
-//           </div>
-//         ))}
-//       </div>
-
-      
-//     </>
-//   );
-//     }
-//   };
-
-//   return (
-//     <div style={styles.shell}>
-
-//       {/* ── SIDEBAR ── */}
-//       <div style={styles.sidebar}>
-//         <div style={styles.sbBrand}>
-//           <div style={styles.sbLogo}>
-//             <div style={styles.sbLogoIcon}>🚌</div>
-//             <div>
-//               <div style={styles.sbLogoText}>BusVoyage</div>
-//               <div style={styles.sbLogoSub}>Metropolitan University</div>
-//             </div>
-//           </div>
-//         </div>
-
-//         <div style={styles.sbUser}>
-//           <div style={styles.sbAvatar}>{initials}</div>
-//           <div>
-//             <div style={styles.sbName}>{user.name}</div>
-//             <div style={styles.sbId}>ID: {user.studentId}</div>
-//           </div>
-//         </div>
-
-//         <div style={styles.sbNav}>
-//           {["Overview", "Features", "Account"].map(section => (
-//             <div key={section}>
-//               <div style={styles.sbSection}>{section}</div>
-//               {navItems.filter(i => i.section === section).map(item => (
-//                 <div
-//                   key={item.id}
-//                   style={{
-//                     ...styles.sbItem,
-//                     ...(activeMenu === item.id ? styles.sbItemActive : {})
-//                   }}
-//                   onClick={() => setActiveMenu(item.id)}
-//                 >
-//                   <span style={styles.sbIcon}>{item.icon}</span>
-//                   {item.label}
-//                   {item.badge && (
-//                     <span style={styles.sbBadge}>{item.badge}</span>
-//                   )}
-//                 </div>
-//               ))}
-//             </div>
-//           ))}
-//         </div>
-
-//         <div style={styles.sbBottom}>
-//           <div style={styles.sbLogout} onClick={handleLogout}>
-//             ↪ &nbsp;Logout
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* ── MAIN ── */}
-//       <div style={styles.main}>
-
-//         {/* Top Bar */}
-//         <div style={styles.topbar}>
-//           <div style={styles.topbarTitle}>
-//             {pageTitles[activeMenu]}
-//           </div>
-//           <div style={styles.topbarRight}>
-//             <div style={styles.topbarTime}>{formatTime(time)}</div>
-//             <div style={styles.topbarDate}>{formatDate(time)}</div>
-//             <div style={styles.notifBtn}>
-//               🔔
-//               <div style={styles.notifDot} />
-//             </div>
-//             <div style={styles.statusPill}>
-//               <div style={styles.statusDot} />
-//               <span style={styles.statusTxt}>All buses operational</span>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Content — switches based on activeMenu */}
-//         <div style={styles.content}>
-//           {renderContent()}
-//         </div>
-//       </div>
-
-//       {/* Animations */}
-//       <style>{`
-//         @keyframes moveBus1 {
-//           0%   { left: -120px; }
-//           100% { left: calc(100% + 20px); }
-//         }
-//         @keyframes moveBus2 {
-//           0%   { left: -120px; }
-//           100% { left: calc(100% + 20px); }
-//         }
-//         @keyframes pulseDot {
-//           0%, 100% { opacity: 1; }
-//           50%       { opacity: 0.4; }
-//         }
-//         .sb-logout:hover { color: #ef4444 !important; }
-//       `}</style>
-
-//     </div>
-//   );
-// }
-
-// const styles = {
-//   shell: {
-//     display: "flex", height: "100vh",
-//     fontFamily: "'Segoe UI', Arial, sans-serif",
-//     background: "#f8fafc", overflow: "hidden"
-//   },
-//   sidebar: {
-//     width: "230px", background: "#0A1628",
-//     display: "flex", flexDirection: "column",
-//     flexShrink: 0, height: "100vh"
-//   },
-//   sbBrand: {
-//     padding: "18px 20px 14px",
-//     borderBottom: "0.5px solid rgba(255,255,255,0.07)"
-//   },
-//   sbLogo: { display: "flex", alignItems: "center", gap: "10px" },
-//   sbLogoIcon: {
-//     width: "34px", height: "34px", background: "#1e3a5f",
-//     borderRadius: "8px", display: "flex", alignItems: "center",
-//     justifyContent: "center", fontSize: "18px"
-//   },
-//   sbLogoText: { color: "#fff", fontSize: "16px", fontWeight: 700 },
-//   sbLogoSub: { color: "#334155", fontSize: "10px", marginTop: "1px" },
-//   sbUser: {
-//     padding: "12px 20px",
-//     borderBottom: "0.5px solid rgba(255,255,255,0.07)",
-//     display: "flex", alignItems: "center", gap: "10px"
-//   },
-//   sbAvatar: {
-//     width: "38px", height: "38px", borderRadius: "50%",
-//     background: "#1e3a5f", border: "2px solid #3b82f6",
-//     display: "flex", alignItems: "center", justifyContent: "center",
-//     color: "#60a5fa", fontSize: "13px", fontWeight: 700, flexShrink: 0
-//   },
-//   sbName: { color: "#e2e8f0", fontSize: "13px", fontWeight: 600 },
-//   sbId: { color: "#475569", fontSize: "11px", marginTop: "2px" },
-//   sbNav: { padding: "8px 0", flex: 1, overflowY: "auto" },
-//   sbSection: {
-//     color: "#1e3a5f", fontSize: "10px", fontWeight: 700,
-//     letterSpacing: "1px", textTransform: "uppercase",
-//     padding: "10px 20px 4px"
-//   },
-//   sbItem: {
-//     display: "flex", alignItems: "center", gap: "10px",
-//     padding: "9px 20px", color: "#475569", fontSize: "13px",
-//     cursor: "pointer", borderRight: "2px solid transparent",
-//     transition: "all 0.2s"
-//   },
-//   sbItemActive: {
-//     background: "rgba(59,130,246,0.1)",
-//     color: "#93c5fd", borderRight: "2px solid #3b82f6"
-//   },
-//   sbIcon: { fontSize: "14px", width: "18px", textAlign: "center" },
-//   sbBadge: {
-//     marginLeft: "auto", background: "#ef4444",
-//     color: "#fff", fontSize: "10px",
-//     padding: "1px 6px", borderRadius: "10px"
-//   },
-//   sbBottom: {
-//     padding: "14px 20px",
-//     borderTop: "0.5px solid rgba(255,255,255,0.07)"
-//   },
-//   sbLogout: {
-//     display: "flex", alignItems: "center", gap: "8px",
-//     color: "#475569", fontSize: "13px", cursor: "pointer"
-//   },
-//   main: { flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" },
-//   topbar: {
-//     background: "#fff", padding: "0 24px", height: "54px",
-//     display: "flex", alignItems: "center", justifyContent: "space-between",
-//     borderBottom: "0.5px solid #e2e8f0", flexShrink: 0
-//   },
-//   topbarTitle: { fontSize: "14px", fontWeight: 600, color: "#0f172a" },
-//   topbarRight: { display: "flex", alignItems: "center", gap: "12px" },
-//   topbarTime: { fontSize: "14px", fontWeight: 700, color: "#0f172a" },
-//   topbarDate: { fontSize: "12px", color: "#94a3b8" },
-//   notifBtn: {
-//     width: "32px", height: "32px", borderRadius: "8px",
-//     background: "#f1f5f9", border: "0.5px solid #e2e8f0",
-//     display: "flex", alignItems: "center", justifyContent: "center",
-//     fontSize: "14px", cursor: "pointer", position: "relative"
-//   },
-//   notifDot: {
-//     position: "absolute", top: "5px", right: "5px",
-//     width: "7px", height: "7px",
-//     background: "#ef4444", borderRadius: "50%",
-//     border: "1.5px solid #fff"
-//   },
-//   statusPill: {
-//     display: "flex", alignItems: "center", gap: "5px",
-//     background: "#f0fdf4", border: "0.5px solid #bbf7d0",
-//     padding: "4px 10px", borderRadius: "20px"
-//   },
-//   statusDot: { width: "6px", height: "6px", background: "#22c55e", borderRadius: "50%" },
-//   statusTxt: { fontSize: "11px", color: "#166634", fontWeight: 500 },
-//   content: {
-//   flex: 1,
-//   padding: "16px 24px",
-//   overflowY: "auto",
-//   display: "flex",
-//   flexDirection: "column",
-//   gap: "14px",
-//   height: "0", 
-//   },       
-
-//   complaintBox: {
-//   background: "#fff",
-//   border: "0.5px solid #e2e8f0",
-//   borderRadius: "12px",
-//   padding: "16px 20px",
-//   display: "flex",
-//   alignItems: "center",
-//   justifyContent: "space-between",
-//   gap: "16px"
-// },
-// complaintLeft: {
-//   display: "flex",
-//   alignItems: "center",
-//   gap: "14px"
-// },
-// complaintIcon: { fontSize: "28px" },
-// complaintTitle: {
-//   fontSize: "14px", fontWeight: 700, color: "#0f172a"
-// },
-// complaintDesc: {
-//   fontSize: "12px", color: "#94a3b8", marginTop: "3px"
-// },
-// complaintBtn: {
-//   padding: "10px 20px",
-//   background: "#0A1628",
-//   color: "#fff",
-//   border: "none",
-//   borderRadius: "8px",
-//   fontSize: "13px",
-//   fontWeight: 600,
-//   cursor: "pointer",
-//   flexShrink: 0
-// },
-
-//   // Welcome banner
-//   welcome: {
-//     borderRadius: "12px", overflow: "hidden",
-//     position: "relative", height: "130px", flexShrink: 0
-//   },
-//   sky: {
-//     position: "absolute", top: 0, left: 0, right: 0,
-//     height: "80px", background: "#94bdce"
-//   },
-//   sun: {
-//     position: "absolute", top: "10px", right: "80px",
-//     width: "28px", height: "28px",
-//     background: "#FFD700", borderRadius: "50%"
-//   },
-//   cloud1: {
-//     position: "absolute", top: "12px", left: "60px",
-//     width: "70px", height: "22px",
-//     background: "white", borderRadius: "20px", opacity: 0.9
-//   },
-//   cloud2: {
-//     position: "absolute", top: "20px", left: "220px",
-//     width: "50px", height: "16px",
-//     background: "white", borderRadius: "20px", opacity: 0.85
-//   },
-//   welcomeOverlay: {
-//     position: "absolute", top: 0, left: 0, right: 0,
-//     padding: "14px 20px",
-//     display: "flex", alignItems: "center", justifyContent: "space-between",
-//     height: "80px", background: "rgba(10,22,40,0.55)", zIndex: 2
-//   },
-//   welcomeLeft: {},
-//   welcomeGreeting: { color: "#fff", fontSize: "15px", fontWeight: 700 },
-//   welcomeMsg: { color: "#cbd5e1", fontSize: "11px", marginTop: "4px" },
-//   welcomeTimer: { textAlign: "right" },
-//   timerLabel: {
-//     color: "#94a3b8", fontSize: "10px",
-//     textTransform: "uppercase", letterSpacing: "0.5px"
-//   },
-//   timerVal: { color: "#60a5fa", fontSize: "22px", fontWeight: 700, marginTop: "2px" },
-//   timerRoute: { color: "#64748b", fontSize: "10px" },
-//   road: {
-//     position: "absolute", bottom: 0, left: 0, right: 0,
-//     height: "52px", background: "#4a4a4a"
-//   },
-//   roadLine: {
-//     position: "absolute", top: "22px", left: 0, right: 0,
-//     height: "3px",
-//     background: "repeating-linear-gradient(90deg, #fff 0, #fff 28px, transparent 28px, transparent 52px)"
-//   },
-//   metroBus: {
-//     position: "absolute", bottom: "6px", fontSize: "28px",
-//     animation: "moveBus1 8s linear infinite"
-//   },
-//   brtcBus: {
-//     position: "absolute", bottom: "6px", fontSize: "28px",
-//     animation: "moveBus2 10s 9s linear infinite"
-//   },
-
-//   // Stats
-//   stats: {
-//     display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
-//     gap: "12px", flexShrink: 0
-//   },
-//   stat: {
-//     background: "#fff", borderRadius: "10px",
-//     padding: "12px 14px", border: "0.5px solid #e2e8f0"
-//   },
-//   statTop: {
-//     display: "flex", alignItems: "center",
-//     justifyContent: "space-between", marginBottom: "6px"
-//   },
-//   statLabel: {
-//     fontSize: "10px", color: "#94a3b8",
-//     fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.5px"
-//   },
-//   statVal: { fontSize: "14px", fontWeight: 700, color: "#0f172a" },
-//   statSub: { fontSize: "11px", marginTop: "3px", fontWeight: 500 },
-//   sectionTitle: { fontSize: "13px", fontWeight: 700, color: "#0f172a" },
-
-//   // Feature cards
-//   cards: {
-//   display: "grid",
-//   gridTemplateColumns: "repeat(4, 1fr)",
-//   gap: "10px"
-//   },
-//   card: {
-//     background: "#fff", borderRadius: "10px",
-//     padding: "14px 12px", border: "0.5px solid #e2e8f0",
-//     cursor: "pointer",
-//     transition: "transform 0.2s, border-color 0.2s, box-shadow 0.2s"
-//   },
-//   cardHead: {
-//     display: "flex", alignItems: "center",
-//     justifyContent: "space-between", marginBottom: "8px"
-//   },
-//   cardIcon: {
-//     width: "36px", height: "36px", borderRadius: "10px",
-//     display: "flex", alignItems: "center",
-//     justifyContent: "center", fontSize: "18px"
-//   },
-//   cardChip: {
-//     fontSize: "10px", padding: "2px 7px",
-//     borderRadius: "10px", fontWeight: 600
-//   },
-//   cardTitle: { fontSize: "12px", fontWeight: 700, color: "#0f172a", marginBottom: "3px" },
-//   cardDesc: { fontSize: "10px", color: "#94a3b8", lineHeight: 1.4, marginBottom: "8px" },
-//   cardLink: { fontSize: "11px", color: "#3b82f6", fontWeight: 600 },
-
-//   // Coming soon
-//   comingSoon: {
-//     display: "flex", flexDirection: "column",
-//     alignItems: "center", justifyContent: "center",
-//     height: "100%", gap: "12px", opacity: 0.6
-//   },
-//   comingSoonIcon: { fontSize: "48px" },
-//   comingSoonTitle: { fontSize: "18px", fontWeight: 700, color: "#0f172a" },
-//   comingSoonText: { fontSize: "14px", color: "#94a3b8" }
-
-// };
-
-
-
-
-
-
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BusTracking    from "./BusTracking";
@@ -572,12 +6,21 @@ import Announcements  from "./Announcements";
 import Complaints     from "./Complaints";
 import LostFound      from "./LostFound";
 
+/* ─────────────────────────────────────────────────────────────
+   STUDENT DASHBOARD  — BusVoyage · Metropolitan University
+   Design: Deep navy + electric blue accent, glass morphism cards,
+   bold typography, responsive sidebar-collapse on mobile
+───────────────────────────────────────────────────────────── */
+
 export default function StudentDashboard() {
   const navigate = useNavigate();
-  const [user,       setUser]       = useState(null);
-  const [activeMenu, setActiveMenu] = useState("dashboard");
-  const [time,       setTime]       = useState(new Date());
 
+  const [user,        setUser]        = useState(null);
+  const [activeMenu,  setActiveMenu]  = useState("dashboard");
+  const [time,        setTime]        = useState(new Date());
+  const [sidebarOpen, setSidebarOpen] = useState(true);   // collapsible on mobile
+
+  // ── Auth guard
   useEffect(() => {
     const saved = localStorage.getItem("user");
     if (!saved) { navigate("/login"); return; }
@@ -586,10 +29,17 @@ export default function StudentDashboard() {
     setUser(parsed);
   }, []);
 
+  // ── Live clock
   useEffect(() => {
-    const t = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(t);
+    const tick = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(tick);
   }, []);
+
+  // ── Close sidebar on small screens when a menu item is tapped
+  const handleMenuSelect = (id) => {
+    setActiveMenu(id);
+    if (window.innerWidth < 768) setSidebarOpen(false);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -597,7 +47,7 @@ export default function StudentDashboard() {
     navigate("/login");
   };
 
-  const getGreeting = () => {
+  const greeting = () => {
     const h = time.getHours();
     if (h < 12) return "Good morning";
     if (h < 17) return "Good afternoon";
@@ -605,10 +55,10 @@ export default function StudentDashboard() {
     return "Good night";
   };
 
-  const formatTime = (d) =>
+  const fmtTime = (d) =>
     d.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
 
-  const formatDate = (d) =>
+  const fmtDate = (d) =>
     d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
 
   if (!user) return null;
@@ -617,19 +67,35 @@ export default function StudentDashboard() {
     ? user.name.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase()
     : "ST";
 
-  const NAV = [
-    { id: "dashboard",     icon: "🏠", label: "Dashboard",        section: "Overview" },
-    { id: "tracking",      icon: "🚌", label: "Bus Tracking",      section: "Features" },
-    { id: "routes",        icon: "🗺️", label: "Routes & Schedule", section: "Features" },
-    { id: "announcements", icon: "📢", label: "Announcements",     section: "Features", badge: 2 },
-    { id: "complaints",    icon: "🧾", label: "Complaints",        section: "Features" },
-    { id: "lostfound",     icon: "🎒", label: "Lost & Found",      section: "Features" },
-    { id: "profile",       icon: "👤", label: "My Profile",        section: "Account"  },
+  // ── Navigation definition
+  const NAV_GROUPS = [
+    {
+      label: "Overview",
+      items: [
+        { id: "dashboard", icon: "⊞", label: "Dashboard" },
+      ],
+    },
+    {
+      label: "Transport",
+      items: [
+        { id: "tracking",      icon: "📍", label: "Live Tracking",    badge: null },
+        { id: "routes",        icon: "🗺",  label: "Routes & Schedule", badge: null },
+        { id: "announcements", icon: "📣", label: "Announcements",    badge: 2    },
+      ],
+    },
+    {
+      label: "My Services",
+      items: [
+        { id: "complaints", icon: "💬", label: "Complaints"  },
+        { id: "lostfound",  icon: "🎒", label: "Lost & Found" },
+        { id: "profile",    icon: "👤", label: "My Profile"  },
+      ],
+    },
   ];
 
-  const PAGE_TITLES = {
-    dashboard:     getGreeting() + ", " + (user.name?.split(" ")[0] || "Student") + "!",
-    tracking:      "Bus Tracking",
+  const PAGE_TITLE = {
+    dashboard:     `${greeting()}, ${user.name?.split(" ")[0] ?? "Student"}`,
+    tracking:      "Live Bus Tracking",
     routes:        "Routes & Schedule",
     announcements: "Announcements",
     complaints:    "Complaints",
@@ -638,10 +104,10 @@ export default function StudentDashboard() {
   };
 
   const ComingSoon = ({ title, icon }) => (
-    <div style={s.comingSoon}>
-      <div style={{ fontSize: 52, marginBottom: 16 }}>{icon}</div>
-      <h3 style={{ fontSize: 20, fontWeight: 700, color: "#0f172a", marginBottom: 8 }}>{title}</h3>
-      <p style={{ fontSize: 14, color: "#94a3b8" }}>This section is coming soon!</p>
+    <div style={cs.empty}>
+      <div style={cs.emptyIcon}>{icon}</div>
+      <div style={cs.emptyTitle}>{title}</div>
+      <div style={cs.emptySub}>This section is coming soon — stay tuned!</div>
     </div>
   );
 
@@ -653,283 +119,816 @@ export default function StudentDashboard() {
       case "complaints":    return <Complaints />;
       case "lostfound":     return <LostFound />;
       case "profile":       return <ComingSoon title="My Profile" icon="👤" />;
-      default:              return <DashboardHome user={user} setActiveMenu={setActiveMenu} getGreeting={getGreeting} />;
+      default:
+        return (
+          <DashboardHome
+            user={user}
+            time={time}
+            greeting={greeting}
+            fmtTime={fmtTime}
+            setActiveMenu={handleMenuSelect}
+          />
+        );
     }
   };
 
   return (
-    <div style={s.shell}>
+    <div style={sh.root}>
+      <style>{GLOBAL_CSS}</style>
 
-      {/* SIDEBAR */}
-      <aside style={s.sidebar}>
+      {/* ══════════ SIDEBAR ══════════ */}
+      <aside style={{ ...sh.sidebar, ...(sidebarOpen ? {} : sh.sidebarHidden) }}>
 
-        {/* Logo */}
-        <div style={s.sbBrand}>
-          <div style={s.sbLogoWrap}>
-            <div style={s.sbLogoBox}>🚌</div>
+        {/* Brand */}
+        <div style={sh.sbTop}>
+          <div style={sh.sbLogo}>
+            <div style={sh.sbLogoIcon}>🚌</div>
             <div>
-              <div style={s.sbLogoText}>BusVoyage</div>
-              <div style={s.sbLogoSub}>Metropolitan University</div>
+              <div style={sh.sbLogoName}>BusVoyage</div>
+              <div style={sh.sbLogoSub}>Metropolitan University</div>
             </div>
           </div>
         </div>
 
         {/* User card */}
-        <div style={s.sbUserCard}>
-          <div style={s.sbAvatar}>{initials}</div>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={s.sbName}>{user.name}</div>
-            <div style={s.sbMeta}>
-              <span style={s.sbRolePill}>Student</span>
-              <span style={s.sbId}>#{user.studentId}</span>
+        <div style={sh.sbUser}>
+          <div style={sh.sbAva}>{initials}</div>
+          <div style={{ minWidth: 0 }}>
+            <div style={sh.sbUserName}>{user.name}</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 3 }}>
+              <span style={sh.sbRoleBadge}>Student</span>
+              <span style={sh.sbUserId}>#{user.studentId}</span>
             </div>
           </div>
         </div>
 
-        {/* Nav */}
-        <nav style={s.sbNav}>
-          {["Overview", "Features", "Account"].map(section => (
-            <div key={section} style={{ marginBottom: 4 }}>
-              <div style={s.sbSection}>{section}</div>
-              {NAV.filter(n => n.section === section).map(item => (
-                <div
-                  key={item.id}
-                  style={{ ...s.sbItem, ...(activeMenu === item.id ? s.sbItemActive : {}) }}
-                  onClick={() => setActiveMenu(item.id)}
-                >
-                  <span style={s.sbIcon}>{item.icon}</span>
-                  <span style={{ flex: 1 }}>{item.label}</span>
-                  {item.badge && <span style={s.sbBadge}>{item.badge}</span>}
-                </div>
-              ))}
+        {/* Nav groups */}
+        <nav style={sh.sbNav}>
+          {NAV_GROUPS.map(group => (
+            <div key={group.label} style={{ marginBottom: 6 }}>
+              <div style={sh.sbGroupLabel}>{group.label}</div>
+              {group.items.map(item => {
+                const isActive = activeMenu === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    style={{ ...sh.sbItem, ...(isActive ? sh.sbItemOn : {}) }}
+                    onClick={() => handleMenuSelect(item.id)}
+                  >
+                    <span style={sh.sbItemIcon}>{item.icon}</span>
+                    <span style={{ flex: 1, textAlign: "left" }}>{item.label}</span>
+                    {item.badge && (
+                      <span style={sh.sbBadge}>{item.badge}</span>
+                    )}
+                    {isActive && <span style={sh.sbActiveLine} />}
+                  </button>
+                );
+              })}
             </div>
           ))}
         </nav>
 
-        {/* Logout */}
-        <div style={s.sbFooter}>
-          <div style={s.sbLogout} onClick={handleLogout}
-            onMouseEnter={e => e.currentTarget.style.color = "#ef4444"}
-            onMouseLeave={e => e.currentTarget.style.color = "#64748b"}>
-            <span>↪</span>
-            <span>Logout</span>
-          </div>
+        {/* Sidebar footer */}
+        <div style={sh.sbBottom}>
+          <div style={sh.sbDivider} />
+          <button style={sh.sbLogout} onClick={handleLogout}>
+            <span>⎋</span>
+            <span>Sign Out</span>
+          </button>
         </div>
       </aside>
 
-      {/* MAIN */}
-      <div style={s.main}>
+      {/* Mobile overlay backdrop */}
+      {sidebarOpen && (
+        <div
+          style={sh.backdrop}
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
-        {/* Topbar */}
-        <header style={s.topbar}>
-          <div>
-            <div style={s.topbarTitle}>
-              {activeMenu === "dashboard" ? "👋 " : ""}{PAGE_TITLES[activeMenu]}
+      {/* ══════════ MAIN ══════════ */}
+      <div style={sh.main}>
+
+        {/* Top bar */}
+        <header style={sh.topbar}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            {/* Hamburger (always visible on mobile) */}
+            <button
+              style={sh.hamburger}
+              onClick={() => setSidebarOpen(o => !o)}
+              aria-label="Toggle sidebar"
+            >
+              <span style={sh.hamLine} />
+              <span style={sh.hamLine} />
+              <span style={sh.hamLine} />
+            </button>
+            <div>
+              <div style={sh.tbTitle}>{PAGE_TITLE[activeMenu]}</div>
+              <div style={sh.tbDate}>{fmtDate(time)}</div>
             </div>
-            <div style={s.topbarDate}>{formatDate(time)}</div>
           </div>
-          <div style={s.topbarRight}>
-            <div style={s.timeBadge}>🕐 {formatTime(time)}</div>
-            <div style={s.statusPill}>
-              <div style={s.statusDot} />
-              <span style={s.statusTxt}>All buses operational</span>
+
+          <div style={sh.tbRight}>
+            <div style={sh.tbClock}>🕐 {fmtTime(time)}</div>
+            <div style={sh.tbStatus}>
+              <span style={sh.tbStatusDot} />
+              <span style={sh.tbStatusTxt}>All buses running</span>
             </div>
-            <div style={s.notifBtn}>
+            <button style={sh.tbBell} aria-label="Notifications">
               🔔
-              <div style={s.notifDot} />
-            </div>
-            <div style={s.avatarSmall}>{initials}</div>
+              <span style={sh.tbBellDot} />
+            </button>
+            <div style={sh.tbAva}>{initials}</div>
           </div>
         </header>
 
-        {/* Content */}
-        <div style={s.content}>
+        {/* Scrollable content area */}
+        <main style={sh.content}>
           {renderContent()}
-        </div>
+        </main>
       </div>
 
+      {/* Keyframe animations */}
       <style>{`
-        @keyframes busRoll  { 0%{left:-120px} 100%{left:calc(100% + 20px)} }
-        @keyframes busRoll2 { 0%{left:-120px} 100%{left:calc(100% + 20px)} }
-        @keyframes cloudDrift { 0%{transform:translateX(0)} 100%{transform:translateX(40px)} }
+        @keyframes busRide   { from { left: -130px } to { left: calc(100% + 20px) } }
+        @keyframes busRide2  { from { left: -130px } to { left: calc(100% + 20px) } }
+        @keyframes cloudMove { 0% { transform: translateX(0) } 100% { transform: translateX(36px) } }
+        @keyframes pulseGlow { 0%,100% { opacity:1 } 50% { opacity:.35 } }
+        @keyframes fadeSlide { from { opacity:0; transform:translateY(12px) } to { opacity:1; transform:none } }
+        @keyframes countUp   { from { opacity:0; transform:scale(.88) } to { opacity:1; transform:scale(1) } }
       `}</style>
     </div>
   );
 }
 
-/* Dashboard Home Component */
-function DashboardHome({ user, setActiveMenu, getGreeting }) {
+/* ─────────────────────────────────────────────────────────────
+   DASHBOARD HOME
+───────────────────────────────────────────────────────────── */
+function DashboardHome({ user, time, greeting, fmtTime, setActiveMenu }) {
+
+  const firstName = user.name?.split(" ")[0] ?? "Student";
+
   const STATS = [
-    { icon:"🚌", label:"Buses Active",  val:"5",       sub:"out of 8 total",     color:"#3b82f6", bg:"#eff6ff" },
-    { icon:"🟢", label:"My Route",      val:"MU-02",   sub:"Tilagor Route",       color:"#22c55e", bg:"#f0fdf4" },
-    { icon:"⏰", label:"Next Bus",      val:"07:45",   sub:"In ~12 minutes",      color:"#f59e0b", bg:"#fffbeb" },
-    { icon:"👥", label:"Crowd Status",  val:"Seats OK",sub:"Available on MU-02", color:"#10b981", bg:"#f0fdf4" },
+    { icon: "🚌", label: "Active Buses",  value: "5 / 8",    note: "Fleet online",       accent: "#3b82f6", light: "#eff6ff" },
+    { icon: "📍", label: "My Route",      value: "MU-02",     note: "Tilagor → Campus",   accent: "#10b981", light: "#ecfdf5" },
+    { icon: "⏰", label: "Next Bus",      value: "07:45",     note: "≈ 12 min away",      accent: "#f59e0b", light: "#fffbeb" },
+    { icon: "💺", label: "Crowd Status",  value: "Seats Free",note: "Low occupancy",      accent: "#8b5cf6", light: "#f5f3ff" },
   ];
 
-  const CARDS = [
-    { id:"tracking",      icon:"🚌", bg:"#eff6ff", title:"Bus Tracking",       desc:"Live location & crowd status",   chip:"● Live",   chipBg:"#dcfce7", chipColor:"#166534", link:"Track now →" },
-    { id:"routes",        icon:"🗺️", bg:"#fefce8", title:"Routes & Schedule",  desc:"Full timetable and stop info",   chip:"3 Routes", chipBg:"#f1f5f9", chipColor:"#475569", link:"View →"      },
-    { id:"announcements", icon:"📢", bg:"#fff7ed", title:"Announcements",       desc:"Notices from transport office",  chip:"2 New",    chipBg:"#fef3c7", chipColor:"#92400e", link:"Read →"      },
-    { id:"complaints",    icon:"🧾", bg:"#fdf4ff", title:"Complaints",          desc:"Submit or track complaint",      chip:"Submit",   chipBg:"#f1f5f9", chipColor:"#475569", link:"Go →"        },
-    { id:"lostfound",     icon:"🎒", bg:"#f5f3ff", title:"Lost & Found",        desc:"Left something on the bus?",    chip:"Search",   chipBg:"#f1f5f9", chipColor:"#475569", link:"Search →"    },
+  const SHORTCUTS = [
+    { id: "tracking",      icon: "📍", title: "Live Tracking",    desc: "See where your bus is right now",  badge: "● Live",   badgeBg: "#dcfce7", badgeColor: "#166534" },
+    { id: "routes",        icon: "🗺",  title: "Routes & Schedules", desc: "Full timetable for all 5 routes", badge: "3 routes", badgeBg: "#f1f5f9", badgeColor: "#475569" },
+    { id: "announcements", icon: "📣", title: "Announcements",     desc: "Latest notices from transport",    badge: "2 new",    badgeBg: "#fef3c7", badgeColor: "#92400e" },
+    { id: "complaints",    icon: "💬", title: "Submit Complaint",  desc: "Report an issue, track updates",   badge: "Open",     badgeBg: "#f1f5f9", badgeColor: "#475569" },
+    { id: "lostfound",     icon: "🎒", title: "Lost & Found",      desc: "Report or search for lost items",  badge: "Search",   badgeBg: "#f1f5f9", badgeColor: "#475569" },
+  ];
+
+  const RECENT = [
+    { icon: "📢", text: "Bus MU-03 delayed 15 min — road work near Bondor", time: "10 min ago",  color: "#f59e0b" },
+    { icon: "✅", text: "Your complaint #C-041 has been resolved",           time: "2 hours ago", color: "#10b981" },
+    { icon: "🚌", text: "Bus MU-01 is now on the Amberkhana route",          time: "Yesterday",   color: "#3b82f6" },
   ];
 
   return (
-    <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
+    <div style={dh.wrap}>
 
-      {/* Welcome Banner */}
-      <div style={d.banner}>
-        <div style={d.sky}>
-          <div style={d.sun} />
-          <div style={{ ...d.cloud, top:12, left:60,   width:80, animationDuration:"6s" }} />
-          <div style={{ ...d.cloud, top:22, left:200,  width:55, animationDuration:"9s",  animationDelay:"2s" }} />
-          <div style={{ ...d.cloud, top:10, right:160, width:65, animationDuration:"8s",  animationDelay:"1s" }} />
+      {/* ── Welcome hero banner ── */}
+      <div style={dh.banner}>
+        {/* Sky scene */}
+        <div style={dh.sky}>
+          <div style={dh.sun} />
+          <div style={{ ...dh.cloud, top: 10, left: 70,   width: 80,  animationDuration: "7s"  }} />
+          <div style={{ ...dh.cloud, top: 20, left: 220,  width: 55,  animationDuration: "10s", animationDelay: "2s" }} />
+          <div style={{ ...dh.cloud, top:  8, right: 140, width: 68,  animationDuration: "9s",  animationDelay: "1s" }} />
         </div>
-        <div style={d.overlay}>
-          <div style={{ flex:1 }}>
-            <div style={d.greeting}>👋 {getGreeting()}, {user.name?.split(" ")[0]}!</div>
-            <div style={d.greetSub}>Ready to ride? Your bus is on the way.</div>
-            <div style={d.routeTag}>
-              <span style={d.greenDot} />
-              Tilagor → MU Campus &nbsp;·&nbsp; MU-02
+
+        {/* Dark overlay + text content */}
+        <div style={dh.bannerContent}>
+          <div style={{ flex: 1 }}>
+            <div style={dh.bannerTag}>
+              <span style={dh.greenPulse} />
+              Live · Tilagor → MU Campus
             </div>
+            <div style={dh.bannerGreet}>👋 {greeting()}, {firstName}!</div>
+            <div style={dh.bannerSub}>Your campus ride tracker — always on time.</div>
           </div>
-          <div style={d.nextCard}>
-            <div style={d.nextLabel}>Next Departure</div>
-            <div style={d.nextTime}>07:45</div>
-            <div style={d.nextRoute}>Tilagor Route</div>
-            <div style={d.nextCountdown}>In ~12 min</div>
+
+          {/* Next bus card */}
+          <div style={dh.nextBusCard}>
+            <div style={dh.nbLabel}>Next departure</div>
+            <div style={dh.nbTime}>07:45</div>
+            <div style={dh.nbRoute}>Tilagor Route · MU-02</div>
+            <div style={dh.nbCountdown}>⏱ In ~12 minutes</div>
           </div>
         </div>
-        <div style={d.road}>
-          <div style={d.roadStripe} />
-          <img src="/bus.png" alt="bus"
-            style={{ position:"absolute", bottom:4, height:44, zIndex:2, animation:"busRoll 9s linear infinite" }}
+
+        {/* Road with animated bus */}
+        <div style={dh.road}>
+          <div style={dh.roadLine} />
+          <img
+            src="/bus.png"
+            alt="bus"
+            style={dh.busImg}
             onError={e => { e.target.style.display = "none"; }}
           />
-          <span style={{ position:"absolute", bottom:8, fontSize:26, zIndex:1, animation:"busRoll2 14s 10s linear infinite" }}>🚎</span>
+          <span style={dh.busEmoji}>🚎</span>
         </div>
       </div>
 
-      {/* Stats */}
-      <div style={d.statsGrid}>
+      {/* ── Stats row ── */}
+      <div style={dh.statsRow}>
         {STATS.map((st, i) => (
-          <div key={i} style={{ ...d.statCard, borderTop:"3px solid "+st.color }}>
-            <div style={{ ...d.statIcon, background:st.bg }}>
-              <span style={{ fontSize:18 }}>{st.icon}</span>
+          <div
+            key={i}
+            style={{ ...dh.statCard, borderTop: `3px solid ${st.accent}`, animationDelay: `${i * 0.08}s` }}
+            className="dash-stat"
+          >
+            <div style={{ ...dh.statIconBox, background: st.light }}>
+              <span style={{ fontSize: 18 }}>{st.icon}</span>
             </div>
-            <div style={d.statVal}>{st.val}</div>
-            <div style={d.statLabel}>{st.label}</div>
-            <div style={d.statSub}>{st.sub}</div>
+            <div style={dh.statValue}>{st.value}</div>
+            <div style={dh.statLabel}>{st.label}</div>
+            <div style={dh.statNote}>{st.note}</div>
           </div>
         ))}
       </div>
 
-      {/* Quick Access */}
-      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-        <div style={{ fontSize:13, fontWeight:700, color:"#0f172a" }}>Quick Access</div>
-        <div style={{ fontSize:11, color:"#94a3b8" }}>Tap any card to navigate</div>
+      {/* ── Quick access ── */}
+      <div style={dh.sectionHeader}>
+        <div style={dh.sectionTitle}>Quick Access</div>
+        <div style={dh.sectionHint}>Tap to navigate</div>
       </div>
-      <div style={d.cardsGrid}>
-        {CARDS.map(card => (
-          <div key={card.id} style={d.card}
-            onClick={() => setActiveMenu(card.id)}
-            onMouseEnter={e => {
-              e.currentTarget.style.transform = "translateY(-3px)";
-              e.currentTarget.style.borderColor = "#93c5fd";
-              e.currentTarget.style.boxShadow = "0 6px 20px rgba(59,130,246,0.1)";
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.borderColor = "#e2e8f0";
-              e.currentTarget.style.boxShadow = "none";
-            }}>
-            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-start", marginBottom:10 }}>
-              <div style={{ ...d.cardIcon, background:card.bg }}>{card.icon}</div>
-              <span style={{ fontSize:10, padding:"2px 7px", borderRadius:10, fontWeight:700, background:card.chipBg, color:card.chipColor }}>{card.chip}</span>
+
+      <div style={dh.shortcutsGrid}>
+        {SHORTCUTS.map((sc, i) => (
+          <button
+            key={sc.id}
+            style={{ ...dh.scCard, animationDelay: `${i * 0.07}s` }}
+            className="dash-card"
+            onClick={() => setActiveMenu(sc.id)}
+          >
+            <div style={dh.scTop}>
+              <div style={dh.scIcon}>{sc.icon}</div>
+              <span style={{ ...dh.scBadge, background: sc.badgeBg, color: sc.badgeColor }}>
+                {sc.badge}
+              </span>
             </div>
-            <div style={{ fontSize:12, fontWeight:700, color:"#0f172a", marginBottom:3 }}>{card.title}</div>
-            <div style={{ fontSize:10, color:"#94a3b8", lineHeight:1.45, marginBottom:10 }}>{card.desc}</div>
-            <div style={{ fontSize:11, color:"#3b82f6", fontWeight:700 }}>{card.link}</div>
+            <div style={dh.scTitle}>{sc.title}</div>
+            <div style={dh.scDesc}>{sc.desc}</div>
+            <div style={dh.scArrow}>Go →</div>
+          </button>
+        ))}
+      </div>
+
+      {/* ── Recent activity ── */}
+      <div style={dh.sectionHeader}>
+        <div style={dh.sectionTitle}>Recent Activity</div>
+        <div style={dh.sectionHint}>Last 24 hours</div>
+      </div>
+
+      <div style={dh.activityList}>
+        {RECENT.map((item, i) => (
+          <div key={i} style={dh.activityItem}>
+            <div style={{ ...dh.activityDot, background: item.color }} />
+            <span style={dh.activityIcon}>{item.icon}</span>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={dh.activityText}>{item.text}</div>
+            </div>
+            <div style={dh.activityTime}>{item.time}</div>
           </div>
         ))}
       </div>
 
-      {/* Notice strip */}
-      <div style={d.notice}>
-        <span style={{ fontSize:16 }}>📢</span>
-        <span style={{ flex:1, fontSize:12, color:"#78350f", lineHeight:1.5 }}>
-          <b>Notice:</b> Bus MU-03 will be delayed by 15 minutes today due to road construction near Bondor.
-        </span>
-        <span style={{ fontSize:11, color:"#a16207", flexShrink:0 }}>10 min ago</span>
-      </div>
     </div>
   );
 }
 
-const d = {
-  banner: { borderRadius:14, overflow:"hidden", position:"relative", height:150, flexShrink:0, boxShadow:"0 2px 12px rgba(0,0,0,0.08)" },
-  sky:    { position:"absolute", top:0, left:0, right:0, height:96, background:"linear-gradient(180deg,#87ceeb 0%,#b8d8f0 100%)", overflow:"hidden" },
-  sun:    { position:"absolute", top:10, right:100, width:30, height:30, borderRadius:"50%", background:"radial-gradient(circle,#FFE566,#FFD700)", boxShadow:"0 0 16px rgba(255,215,0,0.5)" },
-  cloud:  { position:"absolute", height:20, background:"rgba(255,255,255,0.92)", borderRadius:20, animation:"cloudDrift 6s ease-in-out infinite alternate" },
-  overlay:{ position:"absolute", top:0, left:0, right:0, height:96, background:"rgba(10,22,40,0.48)", padding:"14px 20px", display:"flex", alignItems:"center", gap:20, zIndex:2 },
-  greeting:    { color:"#fff", fontSize:16, fontWeight:800, marginBottom:4 },
-  greetSub:    { color:"rgba(255,255,255,0.8)", fontSize:12, marginBottom:6 },
-  routeTag:    { display:"inline-flex", alignItems:"center", gap:6, background:"rgba(255,255,255,0.12)", border:"1px solid rgba(255,255,255,0.2)", color:"#fff", fontSize:11, fontWeight:600, padding:"3px 10px", borderRadius:12 },
-  greenDot:    { width:7, height:7, borderRadius:"50%", background:"#4ade80", display:"inline-block" },
-  nextCard:    { background:"rgba(255,255,255,0.12)", backdropFilter:"blur(8px)", border:"1px solid rgba(255,255,255,0.2)", borderRadius:12, padding:"10px 16px", textAlign:"center", flexShrink:0 },
-  nextLabel:   { color:"rgba(255,255,255,0.7)", fontSize:10, textTransform:"uppercase", letterSpacing:1 },
-  nextTime:    { color:"#FFE566", fontSize:26, fontWeight:900, lineHeight:1.1, margin:"4px 0" },
-  nextRoute:   { color:"rgba(255,255,255,0.8)", fontSize:10 },
-  nextCountdown:{ color:"#4ade80", fontSize:11, fontWeight:700, marginTop:3 },
-  road:        { position:"absolute", bottom:0, left:0, right:0, height:56, background:"#3d3d3d", overflow:"hidden", zIndex:1 },
-  roadStripe:  { position:"absolute", top:24, left:0, right:0, height:4, background:"repeating-linear-gradient(90deg,rgba(255,255,255,0.7) 0,rgba(255,255,255,0.7) 32px,transparent 32px,transparent 64px)" },
-  statsGrid:   { display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:10 },
-  statCard:    { background:"#fff", borderRadius:12, padding:"14px 16px", border:"0.5px solid #e2e8f0", display:"flex", flexDirection:"column", gap:4 },
-  statIcon:    { width:34, height:34, borderRadius:8, display:"flex", alignItems:"center", justifyContent:"center", marginBottom:6 },
-  statVal:     { fontSize:18, fontWeight:800, color:"#0f172a" },
-  statLabel:   { fontSize:11, fontWeight:700, color:"#475569" },
-  statSub:     { fontSize:10, color:"#94a3b8" },
-  cardsGrid:   { display:"grid", gridTemplateColumns:"repeat(5,1fr)", gap:10 },
-  card:        { background:"#fff", borderRadius:12, padding:"14px 12px", border:"0.5px solid #e2e8f0", cursor:"pointer", transition:"transform 0.18s,border-color 0.18s,box-shadow 0.18s" },
-  cardIcon:    { width:38, height:38, borderRadius:10, display:"flex", alignItems:"center", justifyContent:"center", fontSize:20 },
-  notice:      { display:"flex", alignItems:"center", gap:10, background:"#fffbeb", border:"1px solid #fde68a", borderRadius:10, padding:"10px 16px" },
+/* ─────────────────────────────────────────────────────────────
+   STYLES — Shell
+───────────────────────────────────────────────────────────── */
+const sh = {
+  root: {
+    display: "flex",
+    height: "100vh",
+    fontFamily: "'Segoe UI', system-ui, sans-serif",
+    background: "#f0f4f9",
+    overflow: "hidden",
+    position: "relative",
+  },
+
+  /* ── Sidebar ── */
+  sidebar: {
+    width: 240,
+    background: "linear-gradient(180deg, #020e22 0%, #001540 100%)",
+    display: "flex",
+    flexDirection: "column",
+    flexShrink: 0,
+    height: "100vh",
+    transition: "transform 0.28s cubic-bezier(.4,0,.2,1)",
+    zIndex: 100,
+    borderRight: "1px solid rgba(255,255,255,0.06)",
+  },
+  sidebarHidden: {
+    transform: "translateX(-100%)",
+    position: "fixed",
+  },
+
+  backdrop: {
+    position: "fixed",
+    inset: 0,
+    background: "rgba(0,0,0,0.45)",
+    zIndex: 99,
+    display: "none",    // shown via media query in GLOBAL_CSS
+  },
+
+  sbTop: {
+    padding: "20px 18px 16px",
+    borderBottom: "1px solid rgba(255,255,255,0.07)",
+  },
+  sbLogo: {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+  },
+  sbLogoIcon: {
+    width: 36,
+    height: 36,
+    background: "rgba(59,130,246,0.2)",
+    border: "1px solid rgba(59,130,246,0.35)",
+    borderRadius: 10,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 18,
+    flexShrink: 0,
+  },
+  sbLogoName: { color: "#fff", fontSize: 15, fontWeight: 800, letterSpacing: "-0.01em" },
+  sbLogoSub:  { color: "#3b6dbf", fontSize: 10, marginTop: 1 },
+
+  sbUser: {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+    padding: "12px 18px",
+    borderBottom: "1px solid rgba(255,255,255,0.07)",
+  },
+  sbAva: {
+    width: 38,
+    height: 38,
+    borderRadius: "50%",
+    background: "linear-gradient(135deg,#1d4ed8,#3b82f6)",
+    border: "2px solid rgba(96,165,250,0.4)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontSize: 13,
+    fontWeight: 700,
+    flexShrink: 0,
+  },
+  sbUserName: { color: "#e2e8f0", fontSize: 12, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
+  sbRoleBadge:{ background: "rgba(59,130,246,0.18)", color: "#60a5fa", fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 8, letterSpacing: "0.5px", textTransform: "uppercase" },
+  sbUserId:   { color: "#3b6dbf", fontSize: 10 },
+
+  sbNav: {
+    flex: 1,
+    overflowY: "auto",
+    padding: "8px 10px",
+  },
+  sbGroupLabel: {
+    fontSize: 9,
+    fontWeight: 700,
+    color: "#2a5298",
+    textTransform: "uppercase",
+    letterSpacing: "1.2px",
+    padding: "10px 10px 5px",
+  },
+  sbItem: {
+    display: "flex",
+    alignItems: "center",
+    gap: 9,
+    width: "100%",
+    padding: "9px 10px",
+    background: "transparent",
+    border: "none",
+    borderRadius: 9,
+    color: "#5a7fad",
+    fontSize: 12,
+    fontWeight: 500,
+    cursor: "pointer",
+    transition: "all 0.15s",
+    position: "relative",
+    marginBottom: 1,
+  },
+  sbItemOn: {
+    background: "rgba(59,130,246,0.14)",
+    color: "#93c5fd",
+    fontWeight: 600,
+  },
+  sbItemIcon: { fontSize: 14, width: 18, textAlign: "center", flexShrink: 0 },
+  sbBadge: {
+    background: "#ef4444",
+    color: "#fff",
+    fontSize: 9,
+    fontWeight: 700,
+    padding: "2px 6px",
+    borderRadius: 8,
+    flexShrink: 0,
+  },
+  sbActiveLine: {
+    position: "absolute",
+    right: 0,
+    top: "20%",
+    bottom: "20%",
+    width: 3,
+    background: "#3b82f6",
+    borderRadius: "3px 0 0 3px",
+  },
+
+  sbBottom: { padding: "10px 10px 16px", marginTop: "auto" },
+  sbDivider:{ height: 1, background: "rgba(255,255,255,0.06)", marginBottom: 10 },
+  sbLogout: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    width: "100%",
+    background: "transparent",
+    border: "none",
+    color: "#5a7fad",
+    fontSize: 12,
+    fontWeight: 500,
+    cursor: "pointer",
+    padding: "8px 10px",
+    borderRadius: 9,
+    transition: "color 0.2s",
+  },
+
+  /* ── Hamburger ── */
+  hamburger: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    gap: 4,
+    width: 34,
+    height: 34,
+    background: "#f1f5f9",
+    border: "0.5px solid #e2e8f0",
+    borderRadius: 8,
+    cursor: "pointer",
+    padding: "0 8px",
+    flexShrink: 0,
+  },
+  hamLine: {
+    display: "block",
+    height: 2,
+    background: "#334155",
+    borderRadius: 2,
+    width: "100%",
+  },
+
+  /* ── Main ── */
+  main: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    overflow: "hidden",
+    minWidth: 0,
+  },
+
+  topbar: {
+    background: "#fff",
+    padding: "0 20px",
+    height: 58,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderBottom: "1px solid #e2e8f0",
+    flexShrink: 0,
+    gap: 12,
+    boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+  },
+  tbTitle: { fontSize: 15, fontWeight: 700, color: "#0f172a", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
+  tbDate:  { fontSize: 11, color: "#94a3b8", marginTop: 1 },
+  tbRight: { display: "flex", alignItems: "center", gap: 8, flexShrink: 0 },
+  tbClock: { fontSize: 11, fontWeight: 700, color: "#0f172a", background: "#f8fafc", border: "0.5px solid #e2e8f0", padding: "5px 10px", borderRadius: 8, whiteSpace: "nowrap" },
+  tbStatus:{ display: "flex", alignItems: "center", gap: 5, background: "#f0fdf4", border: "0.5px solid #bbf7d0", padding: "4px 10px", borderRadius: 20 },
+  tbStatusDot: { width: 6, height: 6, background: "#22c55e", borderRadius: "50%", animation: "pulseGlow 2s infinite" },
+  tbStatusTxt: { fontSize: 10, color: "#15803d", fontWeight: 600, whiteSpace: "nowrap" },
+  tbBell: {
+    position: "relative",
+    width: 34,
+    height: 34,
+    background: "#f8fafc",
+    border: "0.5px solid #e2e8f0",
+    borderRadius: 9,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 15,
+    cursor: "pointer",
+    flexShrink: 0,
+  },
+  tbBellDot: { position: "absolute", top: 6, right: 6, width: 7, height: 7, background: "#ef4444", borderRadius: "50%", border: "1.5px solid #fff" },
+  tbAva: {
+    width: 32,
+    height: 32,
+    borderRadius: "50%",
+    background: "linear-gradient(135deg,#1d4ed8,#3b82f6)",
+    border: "2px solid rgba(59,130,246,0.4)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    fontSize: 11,
+    fontWeight: 700,
+    flexShrink: 0,
+  },
+
+  content: {
+    flex: 1,
+    overflowY: "auto",
+    padding: "18px 20px",
+    display: "flex",
+    flexDirection: "column",
+    gap: 16,
+    height: 0,
+  },
 };
 
-const s = {
-  shell:   { display:"flex", height:"100vh", fontFamily:"'Segoe UI',Arial,sans-serif", background:"#f1f5f9", overflow:"hidden" },
-  sidebar: { width:232, background:"#001f4d", display:"flex", flexDirection:"column", flexShrink:0, height:"100vh" },
-  sbBrand: { padding:"18px 20px 14px", borderBottom:"1px solid rgba(255,255,255,0.07)" },
-  sbLogoWrap: { display:"flex", alignItems:"center", gap:10 },
-  sbLogoBox:  { width:34, height:34, background:"#003580", borderRadius:8, display:"flex", alignItems:"center", justifyContent:"center", fontSize:18 },
-  sbLogoText: { color:"#fff", fontSize:15, fontWeight:700 },
-  sbLogoSub:  { color:"#4a7fc1", fontSize:10, marginTop:1 },
-  sbUserCard: { padding:"12px 20px", borderBottom:"1px solid rgba(255,255,255,0.07)", display:"flex", alignItems:"center", gap:10 },
-  sbAvatar:   { width:38, height:38, borderRadius:"50%", background:"#003580", border:"2px solid #3b82f6", display:"flex", alignItems:"center", justifyContent:"center", color:"#60a5fa", fontSize:13, fontWeight:700, flexShrink:0 },
-  sbName:     { color:"#e2e8f0", fontSize:13, fontWeight:600, marginBottom:4 },
-  sbMeta:     { display:"flex", alignItems:"center", gap:6 },
-  sbRolePill: { background:"rgba(59,130,246,0.2)", color:"#60a5fa", fontSize:10, fontWeight:700, padding:"2px 7px", borderRadius:10 },
-  sbId:       { color:"#475569", fontSize:10 },
-  sbNav:      { padding:"8px 0", flex:1, overflowY:"auto" },
-  sbSection:  { color:"#4a7fc1", fontSize:10, fontWeight:700, letterSpacing:"1px", textTransform:"uppercase", padding:"10px 20px 4px" },
-  sbItem:     { display:"flex", alignItems:"center", gap:10, padding:"9px 20px", color:"#64748b", fontSize:13, cursor:"pointer", borderRight:"2px solid transparent", transition:"all 0.15s" },
-  sbItemActive:{ background:"rgba(59,130,246,0.12)", color:"#93c5fd", borderRight:"2px solid #3b82f6" },
-  sbIcon:     { fontSize:14, width:18, textAlign:"center" },
-  sbBadge:    { marginLeft:"auto", background:"#ef4444", color:"#fff", fontSize:10, padding:"1px 6px", borderRadius:10 },
-  sbFooter:   { padding:"14px 20px", borderTop:"1px solid rgba(255,255,255,0.07)" },
-  sbLogout:   { display:"flex", alignItems:"center", gap:8, color:"#64748b", fontSize:13, cursor:"pointer", transition:"color 0.2s" },
-  main:       { flex:1, display:"flex", flexDirection:"column", overflow:"hidden" },
-  topbar:     { background:"#fff", padding:"0 24px", height:56, display:"flex", alignItems:"center", justifyContent:"space-between", borderBottom:"1px solid #e2e8f0", flexShrink:0 },
-  topbarTitle:{ fontSize:15, fontWeight:700, color:"#0f172a" },
-  topbarDate: { fontSize:11, color:"#94a3b8", marginTop:2 },
-  topbarRight:{ display:"flex", alignItems:"center", gap:10 },
-  timeBadge:  { fontSize:12, fontWeight:700, color:"#0f172a", background:"#f1f5f9", border:"0.5px solid #e2e8f0", padding:"5px 10px", borderRadius:8 },
-  statusPill: { display:"flex", alignItems:"center", gap:5, background:"#f0fdf4", border:"0.5px solid #bbf7d0", padding:"4px 10px", borderRadius:20 },
-  statusDot:  { width:6, height:6, background:"#22c55e", borderRadius:"50%" },
-  statusTxt:  { fontSize:11, color:"#166634", fontWeight:500 },
-  notifBtn:   { width:32, height:32, borderRadius:8, background:"#f1f5f9", border:"0.5px solid #e2e8f0", display:"flex", alignItems:"center", justifyContent:"center", fontSize:14, cursor:"pointer", position:"relative" },
-  notifDot:   { position:"absolute", top:5, right:5, width:7, height:7, background:"#ef4444", borderRadius:"50%", border:"1.5px solid #fff" },
-  avatarSmall:{ width:30, height:30, borderRadius:"50%", background:"#003580", border:"2px solid #3b82f6", display:"flex", alignItems:"center", justifyContent:"center", color:"#60a5fa", fontSize:11, fontWeight:700 },
-  content:    { flex:1, padding:"16px 24px", overflowY:"auto", display:"flex", flexDirection:"column", gap:14, height:0 },
-  comingSoon: { display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", height:"100%", gap:12, opacity:0.6 },
+/* ─────────────────────────────────────────────────────────────
+   STYLES — Dashboard Home
+───────────────────────────────────────────────────────────── */
+const dh = {
+  wrap: { display: "flex", flexDirection: "column", gap: 14, animation: "fadeSlide 0.45s ease both" },
+
+  /* Banner */
+  banner: {
+    borderRadius: 16,
+    overflow: "hidden",
+    position: "relative",
+    height: 158,
+    flexShrink: 0,
+    boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+  },
+  sky: {
+    position: "absolute",
+    top: 0, left: 0, right: 0,
+    height: 102,
+    background: "linear-gradient(180deg, #5baadc 0%, #a8d4f0 100%)",
+    overflow: "hidden",
+  },
+  sun: {
+    position: "absolute",
+    top: 12, right: 90,
+    width: 28, height: 28,
+    borderRadius: "50%",
+    background: "radial-gradient(circle, #ffe87a, #ffcd00)",
+    boxShadow: "0 0 20px rgba(255,205,0,0.55)",
+  },
+  cloud: {
+    position: "absolute",
+    height: 18,
+    background: "rgba(255,255,255,0.88)",
+    borderRadius: 20,
+    animation: "cloudMove 7s ease-in-out infinite alternate",
+  },
+  bannerContent: {
+    position: "absolute",
+    top: 0, left: 0, right: 0,
+    height: 102,
+    background: "rgba(6,18,40,0.52)",
+    backdropFilter: "blur(2px)",
+    padding: "14px 20px",
+    display: "flex",
+    alignItems: "center",
+    gap: 16,
+    zIndex: 2,
+  },
+  bannerTag: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 6,
+    background: "rgba(255,255,255,0.12)",
+    border: "1px solid rgba(255,255,255,0.18)",
+    color: "#fff",
+    fontSize: 10,
+    fontWeight: 600,
+    padding: "3px 10px",
+    borderRadius: 12,
+    marginBottom: 6,
+  },
+  greenPulse: {
+    width: 6, height: 6,
+    borderRadius: "50%",
+    background: "#4ade80",
+    display: "inline-block",
+    animation: "pulseGlow 1.8s infinite",
+  },
+  bannerGreet: { color: "#fff", fontSize: 17, fontWeight: 800, marginBottom: 3 },
+  bannerSub:   { color: "rgba(255,255,255,0.72)", fontSize: 11 },
+
+  nextBusCard: {
+    background: "rgba(255,255,255,0.12)",
+    backdropFilter: "blur(10px)",
+    border: "1px solid rgba(255,255,255,0.18)",
+    borderRadius: 12,
+    padding: "10px 16px",
+    textAlign: "center",
+    flexShrink: 0,
+  },
+  nbLabel:    { color: "rgba(255,255,255,0.65)", fontSize: 9, textTransform: "uppercase", letterSpacing: 1 },
+  nbTime:     { color: "#ffe566", fontSize: 26, fontWeight: 900, lineHeight: 1.1, margin: "4px 0 2px" },
+  nbRoute:    { color: "rgba(255,255,255,0.72)", fontSize: 9, marginBottom: 3 },
+  nbCountdown:{ color: "#4ade80", fontSize: 10, fontWeight: 700 },
+
+  road: {
+    position: "absolute",
+    bottom: 0, left: 0, right: 0,
+    height: 56,
+    background: "#2d3748",
+    overflow: "hidden",
+    zIndex: 1,
+  },
+  roadLine: {
+    position: "absolute",
+    top: 25, left: 0, right: 0,
+    height: 4,
+    background: "repeating-linear-gradient(90deg, rgba(255,255,255,0.6) 0, rgba(255,255,255,0.6) 30px, transparent 30px, transparent 60px)",
+  },
+  busImg: {
+    position: "absolute",
+    bottom: 4,
+    height: 42,
+    zIndex: 2,
+    animation: "busRide 10s linear infinite",
+  },
+  busEmoji: {
+    position: "absolute",
+    bottom: 8,
+    fontSize: 24,
+    zIndex: 1,
+    animation: "busRide2 15s 8s linear infinite",
+  },
+
+  /* Stats */
+  statsRow: {
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)",
+    gap: 10,
+  },
+  statCard: {
+    background: "#fff",
+    borderRadius: 13,
+    padding: "14px 15px",
+    border: "0.5px solid #e8edf4",
+    boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+    display: "flex",
+    flexDirection: "column",
+    gap: 3,
+    animation: "countUp 0.5s ease both",
+  },
+  statIconBox: {
+    width: 34, height: 34,
+    borderRadius: 9,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 6,
+    flexShrink: 0,
+  },
+  statValue: { fontSize: 17, fontWeight: 800, color: "#0f172a" },
+  statLabel: { fontSize: 11, fontWeight: 600, color: "#475569" },
+  statNote:  { fontSize: 10, color: "#94a3b8" },
+
+  /* Section headers */
+  sectionHeader: { display: "flex", justifyContent: "space-between", alignItems: "center" },
+  sectionTitle:  { fontSize: 13, fontWeight: 700, color: "#0f172a" },
+  sectionHint:   { fontSize: 10, color: "#94a3b8" },
+
+  /* Shortcuts */
+  shortcutsGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(5, 1fr)",
+    gap: 10,
+  },
+  scCard: {
+    background: "#fff",
+    borderRadius: 13,
+    padding: "14px 12px",
+    border: "0.5px solid #e8edf4",
+    cursor: "pointer",
+    textAlign: "left",
+    transition: "transform 0.18s, box-shadow 0.18s, border-color 0.18s",
+    boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+    animation: "fadeSlide 0.5s ease both",
+  },
+  scTop:   { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 },
+  scIcon:  { width: 36, height: 36, background: "#f0f4f9", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 },
+  scBadge: { fontSize: 9, padding: "2px 7px", borderRadius: 8, fontWeight: 700 },
+  scTitle: { fontSize: 11, fontWeight: 700, color: "#0f172a", marginBottom: 3 },
+  scDesc:  { fontSize: 10, color: "#94a3b8", lineHeight: 1.5, marginBottom: 8 },
+  scArrow: { fontSize: 11, color: "#3b82f6", fontWeight: 700 },
+
+  /* Activity feed */
+  activityList: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 8,
+    paddingBottom: 8,
+  },
+  activityItem: {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+    background: "#fff",
+    borderRadius: 11,
+    padding: "12px 14px",
+    border: "0.5px solid #e8edf4",
+    boxShadow: "0 1px 3px rgba(0,0,0,0.03)",
+  },
+  activityDot:  { width: 8, height: 8, borderRadius: "50%", flexShrink: 0 },
+  activityIcon: { fontSize: 16, flexShrink: 0 },
+  activityText: { fontSize: 12, color: "#334155", lineHeight: 1.4 },
+  activityTime: { fontSize: 10, color: "#94a3b8", flexShrink: 0, whiteSpace: "nowrap" },
 };
+
+/* ─────────────────────────────────────────────────────────────
+   STYLES — ComingSoon
+───────────────────────────────────────────────────────────── */
+const cs = {
+  empty:     { display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "60%", gap: 10, opacity: 0.55, animation: "fadeSlide 0.4s ease both" },
+  emptyIcon: { fontSize: 52 },
+  emptyTitle:{ fontSize: 18, fontWeight: 700, color: "#0f172a" },
+  emptySub:  { fontSize: 13, color: "#94a3b8" },
+};
+
+/* ─────────────────────────────────────────────────────────────
+   GLOBAL CSS  — responsive breakpoints + hover utility
+───────────────────────────────────────────────────────────── */
+const GLOBAL_CSS = `
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* Sidebar scroll-bar */
+  aside::-webkit-scrollbar { width: 4px; }
+  aside::-webkit-scrollbar-track { background: transparent; }
+  aside::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 4px; }
+
+  /* Content scroll-bar */
+  main::-webkit-scrollbar { width: 5px; }
+  main::-webkit-scrollbar-track { background: #f0f4f9; }
+  main::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+  /* Sidebar nav hover */
+  button[style*="sbItem"]:hover,
+  .sb-item:hover { background: rgba(59,130,246,0.08) !important; color: #93c5fd !important; }
+
+  /* Dashboard cards hover */
+  .dash-card:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 24px rgba(59,130,246,0.12) !important;
+    border-color: #93c5fd !important;
+  }
+
+  /* Logout hover */
+  button[style*="sbLogout"]:hover { color: #ef4444 !important; }
+
+  /* ── RESPONSIVE ── */
+
+  /* Large desktop: sidebar always open, hamburger subtle */
+  @media (min-width: 1024px) {
+    /* Nothing special — default layout is full sidebar */
+  }
+
+  /* Tablet: sidebar overlaid, hamburger triggers it */
+  @media (max-width: 1023px) {
+    /* sidebar is fixed overlay when open */
+    aside { position: fixed !important; height: 100vh !important; }
+    /* backdrop visible */
+    div[style*="backdrop"] { display: block !important; }
+
+    /* topbar status text hidden to save space */
+    .tb-status-txt { display: none !important; }
+
+    /* stats 2 columns */
+    .stats-row { grid-template-columns: repeat(2, 1fr) !important; }
+
+    /* shortcuts 3 columns */
+    .sc-grid { grid-template-columns: repeat(3, 1fr) !important; }
+  }
+
+  @media (max-width: 640px) {
+    /* stats 2 columns */
+    .stats-row  { grid-template-columns: repeat(2, 1fr) !important; }
+    /* shortcuts 2 columns */
+    .sc-grid    { grid-template-columns: repeat(2, 1fr) !important; }
+    /* clock hidden on very small */
+    .tb-clock   { display: none !important; }
+    /* topbar padding tighter */
+    header[style*="topbar"] { padding: 0 12px !important; }
+    main[style*="content"]  { padding: 12px !important; }
+  }
+
+  @media (max-width: 400px) {
+    .sc-grid { grid-template-columns: 1fr 1fr !important; }
+  }
+`;
