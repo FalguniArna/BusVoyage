@@ -6,14 +6,6 @@ import Announcements  from "./Announcements";
 import Complaints     from "./Complaints";
 import LostFound      from "./LostFound";
 
-/* ═══════════════════════════════════════════════════════════
-   STUDENT DASHBOARD  —  BusVoyage · Metropolitan University
-   Layout : Fixed left sidebar + scrollable right content
-   Theme  : White content area, dark navy sidebar, blue accents
-   Design : Clean card-based, professional, no heavy animations
-═══════════════════════════════════════════════════════════ */
-
-/* ─── Navigation config ─── */
 const NAV = [
   { section: "Main",      id: "dashboard",     label: "Dashboard",        icon: "🏠" },
   { section: "Transport", id: "tracking",      label: "Live Tracking",    icon: "📍", badge: null },
@@ -111,7 +103,7 @@ export default function StudentDashboard() {
     <div style={layout.root}>
       <style>{GLOBAL_CSS}</style>
 
-      {/* ════════ SIDEBAR ════════ */}
+   
       <aside style={{ ...layout.sidebar, ...(sbOpen ? layout.sidebarVisible : {}) }}>
 
         {/* Logo */}
@@ -217,9 +209,6 @@ export default function StudentDashboard() {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════
-   DASHBOARD HOME
-═══════════════════════════════════════════════════════════ */
 function DashboardHome({ user, greeting, firstName, onNavigate }) {
 
   const STATS = [
@@ -412,9 +401,7 @@ const cs = {
   sub:   { fontSize: 14, color: "#94a3b8" },
 };
 
-/* ═══════════════════════════════════════════════════════════
-   LAYOUT STYLES
-═══════════════════════════════════════════════════════════ */
+
 const layout = {
   root: {
     display: "flex",
@@ -460,9 +447,6 @@ const layout = {
   },
 };
 
-/* ═══════════════════════════════════════════════════════════
-   SIDEBAR STYLES
-═══════════════════════════════════════════════════════════ */
 const sb = {
   brand: {
     display: "flex",
@@ -560,9 +544,6 @@ const sb = {
   },
 };
 
-/* ═══════════════════════════════════════════════════════════
-   TOPBAR STYLES
-═══════════════════════════════════════════════════════════ */
 const topbar = {
   wrap: {
     background: "#fff",
@@ -628,9 +609,6 @@ const topbar = {
   hamLine: { display: "block", height: 2, width: "100%", background: "#334155", borderRadius: 2 },
 };
 
-/* ═══════════════════════════════════════════════════════════
-   DASHBOARD HOME STYLES
-═══════════════════════════════════════════════════════════ */
 const dh = {
   page: { display: "flex", flexDirection: "column", gap: 20 },
 
@@ -786,9 +764,6 @@ const dh = {
   tcActive: { fontSize: 11, fontWeight: 700, color: "#059669", background: "#dcfce7", padding: "2px 10px", borderRadius: 20 },
 };
 
-/* ═══════════════════════════════════════════════════════════
-   GLOBAL CSS
-═══════════════════════════════════════════════════════════ */
 const GLOBAL_CSS = `
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   button { font-family: inherit; }
