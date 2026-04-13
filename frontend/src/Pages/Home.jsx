@@ -142,7 +142,6 @@ function RoutesModal({ onClose }) {
   );
 }
 
-/* ── Schedule Modal ── */
 function ScheduleModal({ onClose }) {
   const days = ["Monday–Friday", "Saturday", "Sunday"];
   const [activeDay, setActiveDay] = useState(0);
@@ -204,7 +203,6 @@ function ScheduleModal({ onClose }) {
   );
 }
 
-/* ── Support Modals ── */
 function SupportModal({ type, onClose }) {
   const [submitted, setSubmitted] = useState(false);
   const configs = {
@@ -343,7 +341,6 @@ const modal = {
   freq:      { fontSize: 12, color: "#64748b" },
   routeList: { display: "flex", flexDirection: "column" },};
 
-/* ══════════ MAIN ══════════ */
 export default function Home() {
   const navigate = useNavigate();
   const [scrolled,     setScrolled]    = useState(false);
@@ -663,7 +660,6 @@ export default function Home() {
   );
 }
 
-/* ════ CSS ════ */
 const CSS = `
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -724,7 +720,6 @@ const CSS = `
   }
 `;
 
-/* ════ STYLES ════ */
 const s = {
   page: { fontFamily: "'Inter', 'Segoe UI', sans-serif", background: "#f8f9fa" },
 

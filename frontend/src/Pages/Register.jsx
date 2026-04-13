@@ -2,12 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
-/* ─────────────────────────────────────────────────────────────
-   REGISTER PAGE  — BusVoyage · Metropolitan University
-   Design: Left panel (matches Login) + right form panel
-   Two-step: Step 1 = verify identity, Step 2 = create account
-   Fully responsive for mobile/tablet/desktop
-───────────────────────────────────────────────────────────── */
 
 export default function Register() {
   const navigate = useNavigate();
@@ -31,7 +25,7 @@ export default function Register() {
     setError("");
     setLoading(true);
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/verify-student", verifyData);
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/verify-student`, verifyData);
       setAccountData(prev => ({ ...prev, studentId: res.data.studentId, name: res.data.name }));
       setStep(2);
     } catch (err) {
@@ -50,7 +44,7 @@ export default function Register() {
       return setError("Password must be at least 6 characters.");
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/auth/register", accountData);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, accountData);
       navigate("/login");
     } catch (err) {
       setError(err.response?.data?.message || "Something went wrong. Please try again.");

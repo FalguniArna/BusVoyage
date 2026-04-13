@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-/* ── Data ── */
 const TEAM = [
   { name:"Md. Rakibul Hasan", role:"Full Stack Developer",  sub:"Backend & API Design",      avatar:"RH", color:"#60a5fa", bg:"rgba(96,165,250,0.12)",  border:"rgba(96,165,250,0.3)"  },
   { name:"Nusrat Jahan",      role:"Frontend Developer",    sub:"UI/UX & React",             avatar:"NJ", color:"#4ade80", bg:"rgba(74,222,128,0.12)",  border:"rgba(74,222,128,0.3)"  },
@@ -69,9 +68,6 @@ const faq = {
   a:        { fontSize:13, color:"rgba(255,255,255,0.6)", lineHeight:1.7, marginTop:12, paddingTop:12, borderTop:"1px solid rgba(255,255,255,0.06)" },
 };
 
-/* ══════════════════════════════════════════════════════
-   COMPONENT
-══════════════════════════════════════════════════════ */
 export default function AboutUs() {
   const navigate = useNavigate();
 
@@ -291,7 +287,6 @@ export default function AboutUs() {
   );
 }
 
-/* ════ CSS ════ */
 const CSS = `
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior: smooth; }
