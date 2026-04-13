@@ -8,6 +8,19 @@ export default function Login() {
   const [error,    setError]    = useState("");
   const [loading,  setLoading]  = useState(false);
   const [showPass, setShowPass] = useState(false);
+  const [selectedRole, setSelectedRole] = useState(null);
+
+  const roleCredentials = {
+    Student: { username: "student123", password: "Student@123" },
+    Driver: { username: "driver456", password: "Driver@123" },
+    Admin: { username: "admin789", password: "Admin@123" },
+  };
+
+  const handleRoleClick = (roleName) => {
+    setSelectedRole(roleName);
+    setFormData(roleCredentials[roleName]);
+    setError("");
+  };
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -192,12 +205,24 @@ export default function Login() {
               { label: "Driver",  color: "#16a34a", bg: "#DCFCE7", border: "#86EFAC" },
               { label: "Admin",   color: "#dc2626", bg: "#FEE2E2", border: "#FCA5A5" },
             ].map((r, i) => (
-              <div key={i} style={{ ...s.roleChip, color: r.color, background: r.bg, border: `1px solid ${r.border}` }}>
+              <div
+                key={i}
+                onClick={() => handleRoleClick(r.label)}
+                style={{
+                  ...s.roleChip,
+                  color: r.color,
+                  background: selectedRole === r.label ? r.bg : "#f8fafc",
+                  border: `2px solid ${selectedRole === r.label ? r.border : "#e2e8f0"}`,
+                  cursor: "pointer",
+                  transition: "all 0.2s",
+                  transform: selectedRole === r.label ? "scale(1.05)" : "scale(1)",
+                }}
+              >
                 {r.label}
               </div>
             ))}
           </div>
-          <p style={s.roleHint}>We'll redirect you automatically based on your role.</p>
+          <p style={s.roleHint}>Click a role to auto-fill demo credentials.</p>
 
           {/* switch */}
           <p style={s.switchText}>
