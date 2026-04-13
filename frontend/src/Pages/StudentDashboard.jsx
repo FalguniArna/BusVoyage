@@ -6,6 +6,11 @@ import Announcements  from "./Announcements";
 import Complaints     from "./Complaints";
 import LostFound      from "./LostFound";
 
+/* ═══════════════════════════════════════════════════════════
+   STUDENT DASHBOARD  —  BusVoyage · Metropolitan University
+   Theme  : Dark navy (#0d1b2e) background, matching Driver UI
+   Layout : Fixed sidebar + scrollable content
+═══════════════════════════════════════════════════════════ */
 
 const NAV = [
   { section: "Main",      id: "dashboard",     label: "Dashboard",         icon: "🏠" },
@@ -201,14 +206,10 @@ export default function StudentDashboard() {
   );
 }
 
+/* ═══════════════════════════════════════════════════════════
+   DASHBOARD HOME
+═══════════════════════════════════════════════════════════ */
 function DashboardHome({ user, greeting, firstName, onNavigate }) {
-
-  const STATS = [
-    { icon: "🚌", label: "Active Buses",  value: "5 / 8",     sub: "Fleet operational",  color: "#3b82f6", border: "rgba(59,130,246,0.4)",  bg: "rgba(59,130,246,0.12)"  },
-    { icon: "📍", label: "My Route",      value: "MU-02",      sub: "Tilagor → Campus",   color: "#10b981", border: "rgba(16,185,129,0.4)",  bg: "rgba(16,185,129,0.12)"  },
-    { icon: "⏰", label: "Next Bus",      value: "07:45",      sub: "≈ 12 min away",      color: "#f59e0b", border: "rgba(245,158,11,0.4)",  bg: "rgba(245,158,11,0.12)"  },
-    { icon: "💺", label: "Crowd Status",  value: "Seats Free", sub: "Low occupancy now",  color: "#8b5cf6", border: "rgba(139,92,246,0.4)",  bg: "rgba(139,92,246,0.12)"  },
-  ];
 
   const SHORTCUTS = [
     { id: "tracking",      icon: "📍", title: "Live Tracking",      desc: "See where your bus is now",       badge: "● Live",   bBg: "rgba(16,185,129,0.15)",  bColor: "#4ade80" },
@@ -262,34 +263,13 @@ function DashboardHome({ user, greeting, firstName, onNavigate }) {
         </div>
       </div>
 
-      {/* ── Stats ── */}
-      <div style={dh.secHead}>
-        <span style={dh.secTitle}>Today's Overview</span>
-      </div>
-
-      <div style={dh.statsGrid}>
-        {STATS.map((st, i) => (
-          <div
-            key={i}
-            style={{ ...dh.statCard, borderTop: `3px solid ${st.color}` }}
-          >
-            <div style={{ ...dh.statIcon, background: st.bg, border: `1px solid ${st.border}` }}>
-              <span style={{ fontSize: 20 }}>{st.icon}</span>
-            </div>
-            <div style={{ ...dh.statValue, color: st.color }}>{st.value}</div>
-            <div style={dh.statLabel}>{st.label}</div>
-            <div style={dh.statSub}>{st.sub}</div>
-          </div>
-        ))}
-      </div>
-
       {/* ── Quick Access ── */}
       <div style={dh.secHead}>
         <span style={dh.secTitle}>Quick Access</span>
         <span style={dh.secHint}>Tap any card to open</span>
       </div>
 
-      <div style={dh.shortcutGrid}>
+      <div style={dh.shortcutGrid} className="shortcut-grid">
         {SHORTCUTS.map(sc => (
           <button
             key={sc.id}
@@ -311,7 +291,7 @@ function DashboardHome({ user, greeting, firstName, onNavigate }) {
       </div>
 
       {/* ── Bottom row ── */}
-      <div style={dh.bottomRow}>
+      <div style={dh.bottomRow} className="bottom-row">
 
         {/* Recent activity */}
         <div style={dh.panel}>
@@ -353,7 +333,9 @@ function DashboardHome({ user, greeting, firstName, onNavigate }) {
   );
 }
 
-
+/* ═══════════════════════════════════════════════════════════
+   COMING SOON
+═══════════════════════════════════════════════════════════ */
 function ComingSoon({ icon, title }) {
   return (
     <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", height:"60%", gap:12 }}>
@@ -364,7 +346,9 @@ function ComingSoon({ icon, title }) {
   );
 }
 
-
+/* ═══════════════════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════════════════ */
 const L = {
   root: {
     display: "flex",
@@ -409,7 +393,9 @@ const L = {
   },
 };
 
-
+/* ═══════════════════════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════════════════════ */
 const sb = {
   brand: {
     display: "flex", alignItems: "center", gap: 10,
@@ -488,10 +474,12 @@ const sb = {
   },
 };
 
-
+/* ═══════════════════════════════════════════════════════════
+   TOPBAR
+═══════════════════════════════════════════════════════════ */
 const tb = {
   bar: {
-    background: "#0a1628",   
+    background: "#0a1628",      /* ← dark topbar matching Driver */
     height: 60,
     padding: "0 24px",
     display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -551,6 +539,9 @@ const tb = {
   hamLine: { display: "block", height: 2, width: "100%", background: "#94a3b8", borderRadius: 2 },
 };
 
+/* ═══════════════════════════════════════════════════════════
+   DASHBOARD HOME STYLES
+═══════════════════════════════════════════════════════════ */
 const dh = {
   page: { display: "flex", flexDirection: "column", gap: 20 },
 
@@ -705,6 +696,9 @@ const dh = {
   tcValue: { fontSize: 12, fontWeight: 600, color: "#94a3b8" },
 };
 
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL CSS
+═══════════════════════════════════════════════════════════ */
 const CSS = `
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   button { font-family: inherit; }
@@ -754,10 +748,12 @@ const CSS = `
     /* Stats 2-col */
     div[style*="repeat(4, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
     /* Shortcuts 3-col */
-    div[style*="repeat(5, 1fr)"] { grid-template-columns: repeat(3, 1fr) !important; }
+    .shortcut-grid { grid-template-columns: repeat(3, 1fr) !important; }
   }
 
   @media (max-width: 767px) {
+    .shortcut-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .bottom-row { grid-template-columns: 1fr !important; }
     div[style*="repeat(5, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
     div[style*="1fr 1fr"]        { grid-template-columns: 1fr !important; }
     div[style*="repeat(4, 1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
