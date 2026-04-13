@@ -18,9 +18,10 @@ body {
 }
 
 
+/* এখন CSS এ আছে — উল্টো! */
 @keyframes busDrive {
-  0%   { left: 105%; }
-  100% { left: -380px; }
+  0%   { left: 105%; }    /* right থেকে শুরু */
+  100% { left: -380px; }  /* left এ শেষ */
 }
 
 .road-dash {
@@ -35,7 +36,7 @@ body {
     rgba(255,255,255,0.8) 0px, rgba(255,255,255,0.8) 55px,
     transparent 55px, transparent 110px
   );
-  animation: dashMove 0.9s linear infinite;
+  animation: dashMove 2.5s linear infinite;
 }
 
 @keyframes dashMove {
