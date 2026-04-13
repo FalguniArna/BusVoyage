@@ -6,11 +6,7 @@ import Announcements  from "./Announcements";
 import Complaints     from "./Complaints";
 import LostFound      from "./LostFound";
 
-/* ═══════════════════════════════════════════════════════════
-   STUDENT DASHBOARD  —  BusVoyage · Metropolitan University
-   Theme  : Dark navy (#0d1b2e) background, matching Driver UI
-   Layout : Fixed sidebar + scrollable content
-═══════════════════════════════════════════════════════════ */
+
 
 const NAV = [
   { section: "Main",      id: "dashboard",     label: "Dashboard",         icon: "🏠" },
@@ -206,9 +202,7 @@ export default function StudentDashboard() {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════
-   DASHBOARD HOME
-═══════════════════════════════════════════════════════════ */
+
 function DashboardHome({ user, greeting, firstName, onNavigate }) {
 
   const SHORTCUTS = [
@@ -333,9 +327,8 @@ function DashboardHome({ user, greeting, firstName, onNavigate }) {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════
-   COMING SOON
-═══════════════════════════════════════════════════════════ */
+
+
 function ComingSoon({ icon, title }) {
   return (
     <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", height:"60%", gap:12 }}>
@@ -346,9 +339,7 @@ function ComingSoon({ icon, title }) {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════
-   LAYOUT
-═══════════════════════════════════════════════════════════ */
+
 const L = {
   root: {
     display: "flex",
@@ -393,9 +384,7 @@ const L = {
   },
 };
 
-/* ═══════════════════════════════════════════════════════════
-   SIDEBAR
-═══════════════════════════════════════════════════════════ */
+
 const sb = {
   brand: {
     display: "flex", alignItems: "center", gap: 10,
@@ -474,9 +463,7 @@ const sb = {
   },
 };
 
-/* ═══════════════════════════════════════════════════════════
-   TOPBAR
-═══════════════════════════════════════════════════════════ */
+
 const tb = {
   bar: {
     background: "#0a1628",      /* ← dark topbar matching Driver */
