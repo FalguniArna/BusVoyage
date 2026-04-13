@@ -6,12 +6,6 @@ import Announcements  from "./Announcements";
 import Complaints     from "./Complaints";
 import LostFound      from "./LostFound";
 
-/* ─────────────────────────────────────────────────────────────
-   STUDENT DASHBOARD  — BusVoyage · Metropolitan University
-   Design: Deep navy + electric blue accent, glass morphism cards,
-   bold typography, responsive sidebar-collapse on mobile
-───────────────────────────────────────────────────────────── */
-
 export default function StudentDashboard() {
   const navigate = useNavigate();
 
