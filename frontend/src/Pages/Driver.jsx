@@ -549,7 +549,6 @@ export default function Driver() {
   );
 }
 
-/* ── SUB-COMPONENTS ── */
 
 function StatCard({ label, value, color, bg, border, icon }) {
   return (
@@ -642,7 +641,6 @@ function SummaryRow({ label, value, badge, color, bg, border, light }) {
   );
 }
 
-/* ── STYLES ── */
 const s = {
   page: {
     background: "#F1F5F9",

@@ -728,7 +728,6 @@ const s = {
   roadYellowTop: { position:"absolute", top:0, left:0, right:0, height:5, background:"linear-gradient(to right,#FFD600,#FFC107,#FFD600)" },
   roadYellowBot: { position:"absolute", bottom:0, left:0, right:0, height:5, background:"linear-gradient(to right,#FFD600,#FFC107,#FFD600)" },
 
-  /* 10 dashes, gap 80px — রাস্তা পুরো ভরা থাকবে */
   dashTrack: {
     position:"absolute", top:"50%", left:0,
     display:"flex", gap:80, marginTop:-3,
@@ -736,7 +735,6 @@ const s = {
   },
   dash: { width:60, height:6, background:"white", borderRadius:3, opacity:0.75, flexShrink:0 },
 
-  /* Bus — left থেকে right, scaleX(-1) দিয়ে সামনের দিক সামনে */
   heroBus: {
     position:"absolute", bottom:8, left:0,
     height:72, zIndex:10,

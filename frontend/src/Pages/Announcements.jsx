@@ -6,7 +6,7 @@ export default function Announcements() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("${import.meta.env.VITE_API_URL}/api/announcements")
+    axios.get(`${import.meta.env.VITE_API_URL}/api/announcements`)
       .then(res => {
         setAnnouncements(res.data);
         setLoading(false);

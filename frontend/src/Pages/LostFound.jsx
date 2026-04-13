@@ -22,7 +22,7 @@ export default function LostFound() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const fetchItems = () => {
-    axios.get("${import.meta.env.VITE_API_URL}/api/lostfound")
+    axios.get(`${import.meta.env.VITE_API_URL}/api/lostfound`)
       .then(res => { setItems(res.data); setLoading(false); })
       .catch(() => setLoading(false));
   };
@@ -39,7 +39,7 @@ export default function LostFound() {
     }
     setSubmitting(true);
     try {
-      await axios.post("${import.meta.env.VITE_API_URL}/api/lostfound", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/lostfound`, {
         ...form,
         studentId: user.studentId,
         studentName: user.name,

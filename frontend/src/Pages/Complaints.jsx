@@ -29,7 +29,7 @@ export default function Complaints() {
     setSubmitting(true);
     setError("");
     try {
-      await axios.post("${import.meta.env.VITE_API_URL}/api/complaints", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/complaints`, {
         studentId: user.studentId,
         studentName: user.name,
         message: message.trim()

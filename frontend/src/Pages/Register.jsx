@@ -171,7 +171,7 @@ export default function Register() {
     setLoading(true);
     setError("");
     try {
-      const res = await axios.post("${import.meta.env.VITE_API_URL}/api/auth/verify-student", verifyData);
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/verify-student`, verifyData);
       setAccountData(prev => ({ ...prev, studentId: res.data.studentId, name: res.data.name }));
       setStep(2);
     } catch (err) {
@@ -190,7 +190,7 @@ export default function Register() {
       return setError("Password must be at least 6 characters.");
     setLoading(true);
     try {
-      await axios.post("${import.meta.env.VITE_API_URL}/api/auth/register", accountData);
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, accountData);
       alert("Registration successful! Please login.");
       navigate("/login");
     } catch (err) {
