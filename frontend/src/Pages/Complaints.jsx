@@ -17,7 +17,7 @@ export default function Complaints() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const fetchComplaints = () => {
-    axios.get(`http://localhost:5000/api/complaints/student/${user.studentId}`)
+    axios.get(`${import.meta.env.VITE_API_URL}/api/complaints/student/${user.studentId}`)
       .then(res => setComplaints(res.data))
       .catch(() => {});
   };
@@ -29,7 +29,7 @@ export default function Complaints() {
     setSubmitting(true);
     setError("");
     try {
-      await axios.post("http://localhost:5000/api/complaints", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/complaints`, {
         studentId: user.studentId,
         studentName: user.name,
         message: message.trim()

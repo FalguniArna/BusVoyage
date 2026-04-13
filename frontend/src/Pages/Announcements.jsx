@@ -6,7 +6,7 @@ export default function Announcements() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/announcements")
+    axios.get(`${import.meta.env.VITE_API_URL}/api/announcements`)
       .then(res => {
         setAnnouncements(res.data);
         setLoading(false);
@@ -58,7 +58,7 @@ export default function Announcements() {
           <p style={styles.cardMsg}>{a.message}</p>
           {a.imageUrl && (
             <img
-              src={`http://localhost:5000${a.imageUrl}`}
+              src={`${import.meta.env.VITE_API_URL}${a.imageUrl}`}
               alt="Notice"
               style={styles.noticeImg}
             />

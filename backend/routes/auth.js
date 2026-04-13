@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const PreRegisteredStudent = require('../models/PreRegisteredStudent');
 
-// STEP 1 OF REGISTER — verify student identity
 router.post('/verify-student', async (req, res) => {
   const { name, studentId, phone } = req.body;
   console.log("Received:", { name, studentId, phone });
@@ -41,7 +40,6 @@ router.post('/verify-student', async (req, res) => {
   }
 });
 
-// STEP 2 OF REGISTER — create username & password
 router.post('/register', async (req, res) => {
   const { username, password, studentId, name } = req.body;
 
