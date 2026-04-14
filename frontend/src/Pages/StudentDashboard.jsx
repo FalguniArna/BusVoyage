@@ -6,7 +6,11 @@ import Announcements  from "./Announcements";
 import Complaints     from "./Complaints";
 import LostFound      from "./LostFound";
 
-
+/* ═══════════════════════════════════════════════════════════
+   STUDENT DASHBOARD  —  BusVoyage · Metropolitan University
+   Theme  : Dark navy (#0d1b2e) background, matching Driver UI
+   Layout : Fixed sidebar + scrollable content
+═══════════════════════════════════════════════════════════ */
 
 const NAV = [
   { section: "Main",      id: "dashboard",     label: "Dashboard",         icon: "🏠" },
@@ -69,6 +73,7 @@ export default function StudentDashboard() {
   };
 
   const selectMenu = (id) => {
+    console.log('selectMenu called with id:', id);
     setActive(id);
     setSbOpen(false);
   };
@@ -202,7 +207,9 @@ export default function StudentDashboard() {
   );
 }
 
-
+/* ═══════════════════════════════════════════════════════════
+   DASHBOARD HOME
+═══════════════════════════════════════════════════════════ */
 function DashboardHome({ user, greeting, firstName, onNavigate }) {
 
   const SHORTCUTS = [
@@ -269,7 +276,7 @@ function DashboardHome({ user, greeting, firstName, onNavigate }) {
             key={sc.id}
             className="sc-card"
             style={dh.scCard}
-            onClick={() => onNavigate(sc.id)}
+            onClick={() => { console.log('shortcut clicked:', sc.id); onNavigate(sc.id); }}
           >
             <div style={dh.scTop}>
               <div style={dh.scIcon}>{sc.icon}</div>
@@ -327,8 +334,9 @@ function DashboardHome({ user, greeting, firstName, onNavigate }) {
   );
 }
 
-
-
+/* ═══════════════════════════════════════════════════════════
+   COMING SOON
+═══════════════════════════════════════════════════════════ */
 function ComingSoon({ icon, title }) {
   return (
     <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", height:"60%", gap:12 }}>
@@ -339,7 +347,9 @@ function ComingSoon({ icon, title }) {
   );
 }
 
-
+/* ═══════════════════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════════════════ */
 const L = {
   root: {
     display: "flex",
@@ -384,7 +394,9 @@ const L = {
   },
 };
 
-
+/* ═══════════════════════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════════════════════ */
 const sb = {
   brand: {
     display: "flex", alignItems: "center", gap: 10,
@@ -463,7 +475,9 @@ const sb = {
   },
 };
 
-
+/* ═══════════════════════════════════════════════════════════
+   TOPBAR
+═══════════════════════════════════════════════════════════ */
 const tb = {
   bar: {
     background: "#0a1628",      /* ← dark topbar matching Driver */
@@ -617,7 +631,7 @@ const dh = {
   /* Shortcuts */
   shortcutGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(5, 1fr)",
+    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
     gap: 12,
   },
   scCard: {
