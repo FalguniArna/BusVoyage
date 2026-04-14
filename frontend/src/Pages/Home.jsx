@@ -703,7 +703,7 @@ const CSS = `
     .nav-desktop  { display: none !important; }
     .nav-mobile   { display: flex !important; }
     .hero-img-col { display: none !important; }
-    .heroBody    { padding: 0 24px !important; }
+    .heroBody    { padding: 0 24px !important; flex-direction: column !important; align-items: center !important; gap: 24px !important; }
     .hero-text-col { align-items: center !important; text-align: center !important; padding-top: 40px !important; }
     .hero-btn-book { align-self: center; }
     .feat-grid    { grid-template-columns: repeat(2,1fr) !important; }
@@ -752,11 +752,11 @@ const s = {
   heroImageCol:  { flex: 1.2, display: "flex", justifyContent: "center" },
   busWrapper:    { width: "100%", maxWidth: "700px" },
   busImgStatic:  { width: "100%", height: "auto", filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.4))" },
-  heroTextCol:   { flex: 1, color: "#fff", paddingTop: "100px" },
+  heroTextCol:   { flex: 1, color: "#fff", paddingTop: "100px", display: "flex", flexDirection: "column" },
   heroH1:        { fontSize: "clamp(28px,4vw,48px)", fontWeight: 800, lineHeight: 1.2, marginBottom: "20px" },
   heroBold:      { color: "#fff", textDecoration: "underline", textDecorationColor: "#E31E24" },
   heroP:         { fontSize: "clamp(13px,1.5vw,16px)", lineHeight: 1.65, opacity: 0.88, marginBottom: "30px", maxWidth: "500px" },
-  btnBook:       { background: "#1e272e", color: "#fff", padding: "14px 36px", border: "none", borderRadius: "8px", fontWeight: 700, fontSize: "15px", cursor: "pointer" },
+  btnBook:       { display: "inline-flex", justifyContent: "center", alignItems: "center", minWidth: 170, background: "#1e272e", color: "#fff", padding: "14px 36px", border: "none", borderRadius: "8px", fontWeight: 700, fontSize: "15px", cursor: "pointer", transition: "transform 0.2s ease" },
   statsStrip:    { position: "absolute", bottom: 32, left: "60px", right: "60px", background: "rgba(15,23,42,0.85)", backdropFilter: "blur(10px)", display: "flex", padding: "20px 26px", borderRadius: "14px", zIndex: 20, border: "1px solid rgba(255,255,255,0.07)" },
   stripItem:     { flex: 1, textAlign: "left" },
   stripLabel:    { fontSize: "10px", fontWeight: 700, color: "rgba(255,255,255,0.42)", marginBottom: "6px", letterSpacing: 1.2, textTransform: "uppercase" },
