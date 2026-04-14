@@ -8,13 +8,6 @@ dotenv.config();
 
 const app = express();
 
-// app.use(cors({
-//   origin: [/^http:\/\/localhost:\d+$/, 
-//     /https:\/\/bus-voyage\.vercel\.app$/],
-//   credentials: true
-// }));
-
-
 app.use(cors({
   origin: [
     "http://localhost:5173", 
@@ -23,6 +16,9 @@ app.use(cors({
   ],
   credentials: true
 }));
+
+const adminRoutes = require('./routes/admin');
+app.use('/api/admin', adminRoutes);
 
 app.use(express.json());
 
