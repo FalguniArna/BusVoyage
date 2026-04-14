@@ -343,18 +343,11 @@ const modal = {
 
 export default function Home() {
   const navigate = useNavigate();
-  const [scrolled,     setScrolled]    = useState(false);
   const [showRoutes,   setShowRoutes]  = useState(false);
   const [showSchedule, setShowSchedule]= useState(false);
   const [supportModal, setSupportModal]= useState(null);
   const [mobileMenu,   setMobileMenu]  = useState(false);
   const [galSlide,     setGalSlide]    = useState(0);
-
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", fn);
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
 
   return (
     <div style={s.page}>
@@ -364,8 +357,8 @@ export default function Home() {
       {showSchedule && <ScheduleModal onClose={() => setShowSchedule(false)} />}
       {supportModal && <SupportModal  type={supportModal} onClose={() => setSupportModal(null)} />}
 
-      {/* ══ NAVBAR ══ */}
-      <nav style={{ ...s.nav, ...(scrolled ? s.navSolid : {}) }}>
+      {/*NAVBAR */}
+      <nav style={s.nav}>
         <div style={s.brand}>
           <div style={s.brandDot} />
           <span style={s.brandName}>BusVoyage</span>
@@ -425,9 +418,7 @@ export default function Home() {
               with BusVoyage
             </h1>
             <p style={s.heroP} className="hero-fade-3">
-              Our platform delivers precision real-time tracking, live seat occupancy insights,
-              and optimized schedules designed exclusively for the MU community.
-              Navigating through the bustling heart of Sylhet has never been smoother.
+              Our platform delivers precision real-time tracking, live seat occupancy insights,and optimized schedules designed for MU community.
             </p>
             <div className="hero-fade-4">
               <button style={s.btnBook} onClick={() => navigate("/about")}>About Us</button>
@@ -723,8 +714,8 @@ const CSS = `
 const s = {
   page: { fontFamily: "'Inter', 'Segoe UI', sans-serif", background: "#f8f9fa" },
 
-  nav:       { position: "fixed", top: 0, width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 60px", zIndex: 1000, transition: "0.3s" },
-  navSolid:  { background: "#0f172a", boxShadow: "0 2px 10px rgba(0,0,0,0.15)" },
+  nav:       { position: "fixed", top: 0, left: 0, right: 0, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 60px", zIndex: 1000, transition: "0.3s", background: "#0f172a", boxShadow: "0 2px 10px rgba(0,0,0,0.15)" },
+  navSolid:  { },
   brand:     { display: "flex", alignItems: "center", gap: "10px", color: "#fff" },
   brandDot:  { width: "10px", height: "10px", background: "#E31E24", borderRadius: "50%", animation: "pulse 2.5s infinite", flexShrink: 0 },
   brandName: { fontWeight: 800, fontSize: "20px", color: "#fff" },
@@ -739,25 +730,25 @@ const s = {
   mobileDrawer: { position: "fixed", top: 64, left: 0, right: 0, background: "#0f172a", zIndex: 999, padding: "20px 24px 24px", borderBottom: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 8px 24px rgba(0,0,0,0.3)" },
   mobileLink:   { padding: "12px 0", fontSize: 16, fontWeight: 600, color: "rgba(255,255,255,0.85)", cursor: "pointer", borderBottom: "1px solid rgba(255,255,255,0.07)" },
 
-  hero:          { position: "relative", height: "100vh", minHeight: 500, background: "#2d3436", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" },
+  hero:          { position: "relative", minHeight: 660, background: "#2d3436", display: "flex", flexDirection: "column", justifyContent: "flex-start", overflow: "hidden", paddingTop: "90px", paddingBottom: "140px" },
   heroBg:        { position: "absolute", inset: 0, backgroundImage: "url('/mu.jpg')", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.15 },
-  heroFloorArea: { position: "absolute", bottom: 0, width: "100%", height: "45%", background: "#f39c12", opacity: 0.9 },
-  heroBody:      { position: "relative", zIndex: 10, display: "flex", alignItems: "center", padding: "0 60px", gap: "40px" },
+  heroFloorArea: { position: "absolute", bottom: 0, width: "100%", height: "36%", background: "#f39c12", opacity: 0.92 },
+  heroBody:      { position: "relative", zIndex: 10, display: "flex", alignItems: "flex-start", justifyContent: "space-between", padding: "0 60px", gap: "40px" },
   heroImageCol:  { flex: 1.2, display: "flex", justifyContent: "center" },
-  busWrapper:    { width: "100%", maxWidth: "700px" },
+  busWrapper:    { width: "100%", maxWidth: "700px", position: "relative", bottom: "-54px" },
   busImgStatic:  { width: "100%", height: "auto", filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.4))" },
   heroTextCol:   { flex: 1, color: "#fff", paddingTop: "100px" },
   heroH1:        { fontSize: "clamp(28px,4vw,48px)", fontWeight: 800, lineHeight: 1.2, marginBottom: "20px" },
   heroBold:      { color: "#fff", textDecoration: "underline", textDecorationColor: "#E31E24" },
   heroP:         { fontSize: "clamp(13px,1.5vw,16px)", lineHeight: 1.65, opacity: 0.88, marginBottom: "30px", maxWidth: "500px" },
   btnBook:       { background: "#1e272e", color: "#fff", padding: "14px 36px", border: "none", borderRadius: "8px", fontWeight: 700, fontSize: "15px", cursor: "pointer" },
-  statsStrip:    { position: "absolute", bottom: 32, left: "60px", right: "60px", background: "rgba(15,23,42,0.85)", backdropFilter: "blur(10px)", display: "flex", padding: "20px 26px", borderRadius: "14px", zIndex: 20, border: "1px solid rgba(255,255,255,0.07)" },
+  statsStrip:    { position: "absolute", bottom: 0, left: 0, right: 0, background: "rgba(15,23,42,0.92)", backdropFilter: "blur(12px)", display: "flex", padding: "24px 30px", borderRadius: "18px", zIndex: 20, border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 22px 50px rgba(0,0,0,0.18)" },
   stripItem:     { flex: 1, textAlign: "left" },
   stripLabel:    { fontSize: "10px", fontWeight: 700, color: "rgba(255,255,255,0.42)", marginBottom: "6px", letterSpacing: 1.2, textTransform: "uppercase" },
   stripVal:      { fontSize: "clamp(16px,2vw,20px)", fontWeight: 900, color: "#fff" },
   stripDiv:      { width: "1px", background: "rgba(255,255,255,0.1)", margin: "0 16px" },
 
-  featSec:   { padding: "80px clamp(24px,6vw,80px)", background: "#fff" },
+  featSec:   { padding: "70px clamp(24px,6vw,70px)", background: "#fff" },
   secPill:   { background: "#f1f2f6", color: "#E31E24", padding: "5px 15px", borderRadius: "20px", fontSize: "11px", fontWeight: 700, letterSpacing: 1, marginBottom: "18px", display: "inline-block", textTransform: "uppercase" },
   secPillW:  { background: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.65)", padding: "5px 15px", borderRadius: "20px", fontSize: "11px", fontWeight: 700, letterSpacing: 1, marginBottom: "18px", display: "inline-block", textTransform: "uppercase" },
   secH2:     { fontSize: "clamp(24px,3vw,38px)", fontWeight: 900, color: "#1e272e", lineHeight: 1.2, marginBottom: 44 },
@@ -768,7 +759,7 @@ const s = {
   featDesc:  { fontSize: "13px", color: "#636e72", lineHeight: 1.65 },
   featBar:   { height: "3px", width: "36px", marginTop: "16px", borderRadius: "2px" },
 
-  routeSec:   { padding: "80px clamp(24px,6vw,80px)", background: "#0f172a" },
+  routeSec:   { padding: "60px clamp(24px,6vw,60px)", background: "#0f172a" },
   routeGrid:  { display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: "56px", maxWidth: 1200, margin: "0 auto", alignItems: "start" },
   routeSubP:  { color: "rgba(255,255,255,0.42)", marginTop: "12px", fontSize: 14, lineHeight: 1.75, maxWidth: 260 },
   routeRight: { display: "flex", flexDirection: "column", gap: "10px" },
