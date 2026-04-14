@@ -411,14 +411,14 @@ export default function Home() {
       <section style={s.hero}>
         <div style={s.heroBg} />
         <div style={s.heroFloorArea} />
-        <div style={s.heroBody}>
+        <div style={s.heroBody} className="heroBody">
           <div style={s.heroImageCol} className="hero-fade-1 hero-img-col">
             <div style={s.busWrapper}>
               <img src="/buss.png" alt="Metropolitan University Bus" style={s.busImgStatic}
                 onError={e => { e.target.style.opacity = "0.15"; }} />
             </div>
           </div>
-          <div style={s.heroTextCol}>
+          <div style={s.heroTextCol} className="hero-text-col">
             <h1 style={s.heroH1} className="hero-fade-2">
               Embark on a <br />
               <span style={s.heroBold}>Unforgettable Journey</span><br />
@@ -430,7 +430,7 @@ export default function Home() {
               Navigating through the bustling heart of Sylhet has never been smoother.
             </p>
             <div className="hero-fade-4">
-              <button style={s.btnBook} onClick={() => navigate("/about")}>About Us</button>
+              <button style={s.btnBook} className="hero-btn-book" onClick={() => navigate("/about")}>About Us</button>
             </div>
           </div>
         </div>
@@ -695,11 +695,17 @@ const CSS = `
   .nav-desktop { display: flex; }
   .nav-mobile  { display: none !important; }
   .hide-xs     { display: inline; }
+  .hero-text-col { display: flex; flex-direction: column; align-items: flex-start; }
+  .hero-btn-book { transition: transform 0.2s ease; }
+  .hero-btn-book:hover { transform: translateY(-1px); }
 
   @media (max-width: 900px) {
     .nav-desktop  { display: none !important; }
     .nav-mobile   { display: flex !important; }
     .hero-img-col { display: none !important; }
+    .heroBody    { padding: 0 24px !important; }
+    .hero-text-col { align-items: center !important; text-align: center !important; padding-top: 40px !important; }
+    .hero-btn-book { align-self: center; }
     .feat-grid    { grid-template-columns: repeat(2,1fr) !important; }
     .route-grid   { grid-template-columns: 1fr !important; }
     .how-row      { flex-wrap: wrap !important; }
@@ -723,8 +729,8 @@ const CSS = `
 const s = {
   page: { fontFamily: "'Inter', 'Segoe UI', sans-serif", background: "#f8f9fa" },
 
-  nav:       { position: "fixed", top: 0, width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 60px", zIndex: 1000, transition: "0.3s" },
-  navSolid:  { background: "#0f172a", boxShadow: "0 2px 10px rgba(0,0,0,0.15)" },
+  nav:       { position: "fixed", top: 0, width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 60px", zIndex: 1000, transition: "0.3s", background: "#0f172a", borderBottom: "1px solid rgba(255,255,255,0.08)" },
+  navSolid:  { boxShadow: "0 2px 10px rgba(0,0,0,0.15)" },
   brand:     { display: "flex", alignItems: "center", gap: "10px", color: "#fff" },
   brandDot:  { width: "10px", height: "10px", background: "#E31E24", borderRadius: "50%", animation: "pulse 2.5s infinite", flexShrink: 0 },
   brandName: { fontWeight: 800, fontSize: "20px", color: "#fff" },
