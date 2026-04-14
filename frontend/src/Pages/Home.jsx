@@ -411,14 +411,14 @@ export default function Home() {
       <section style={s.hero}>
         <div style={s.heroBg} />
         <div style={s.heroFloorArea} />
-        <div style={s.heroBody} className="heroBody">
+        <div style={s.heroBody}>
           <div style={s.heroImageCol} className="hero-fade-1 hero-img-col">
             <div style={s.busWrapper}>
               <img src="/buss.png" alt="Metropolitan University Bus" style={s.busImgStatic}
                 onError={e => { e.target.style.opacity = "0.15"; }} />
             </div>
           </div>
-          <div style={s.heroTextCol} className="hero-text-col">
+          <div style={s.heroTextCol}>
             <h1 style={s.heroH1} className="hero-fade-2">
               Embark on a <br />
               <span style={s.heroBold}>Unforgettable Journey</span><br />
@@ -430,7 +430,7 @@ export default function Home() {
               Navigating through the bustling heart of Sylhet has never been smoother.
             </p>
             <div className="hero-fade-4">
-              <button style={s.btnBook} className="hero-btn-book" onClick={() => navigate("/about")}>About Us</button>
+              <button style={s.btnBook} onClick={() => navigate("/about")}>About Us</button>
             </div>
           </div>
         </div>
@@ -695,17 +695,11 @@ const CSS = `
   .nav-desktop { display: flex; }
   .nav-mobile  { display: none !important; }
   .hide-xs     { display: inline; }
-  .hero-text-col { display: flex; flex-direction: column; align-items: flex-start; }
-  .hero-btn-book { transition: transform 0.2s ease; }
-  .hero-btn-book:hover { transform: translateY(-1px); }
 
   @media (max-width: 900px) {
     .nav-desktop  { display: none !important; }
     .nav-mobile   { display: flex !important; }
     .hero-img-col { display: none !important; }
-    .heroBody    { padding: 0 24px !important; flex-direction: column !important; align-items: center !important; gap: 24px !important; }
-    .hero-text-col { align-items: center !important; text-align: center !important; padding-top: 40px !important; }
-    .hero-btn-book { align-self: center; }
     .feat-grid    { grid-template-columns: repeat(2,1fr) !important; }
     .route-grid   { grid-template-columns: 1fr !important; }
     .how-row      { flex-wrap: wrap !important; }
@@ -729,8 +723,8 @@ const CSS = `
 const s = {
   page: { fontFamily: "'Inter', 'Segoe UI', sans-serif", background: "#f8f9fa" },
 
-  nav:       { position: "fixed", top: 0, width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 60px", zIndex: 1000, transition: "0.3s", background: "#0f172a", borderBottom: "1px solid rgba(255,255,255,0.08)" },
-  navSolid:  { boxShadow: "0 2px 10px rgba(0,0,0,0.15)" },
+  nav:       { position: "fixed", top: 0, width: "100%", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 60px", zIndex: 1000, transition: "0.3s" },
+  navSolid:  { background: "#0f172a", boxShadow: "0 2px 10px rgba(0,0,0,0.15)" },
   brand:     { display: "flex", alignItems: "center", gap: "10px", color: "#fff" },
   brandDot:  { width: "10px", height: "10px", background: "#E31E24", borderRadius: "50%", animation: "pulse 2.5s infinite", flexShrink: 0 },
   brandName: { fontWeight: 800, fontSize: "20px", color: "#fff" },
@@ -745,19 +739,19 @@ const s = {
   mobileDrawer: { position: "fixed", top: 64, left: 0, right: 0, background: "#0f172a", zIndex: 999, padding: "20px 24px 24px", borderBottom: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 8px 24px rgba(0,0,0,0.3)" },
   mobileLink:   { padding: "12px 0", fontSize: 16, fontWeight: 600, color: "rgba(255,255,255,0.85)", cursor: "pointer", borderBottom: "1px solid rgba(255,255,255,0.07)" },
 
-  hero:          { position: "relative", minHeight: "100vh", background: "#2d3436", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden", paddingBottom: "120px" },
+  hero:          { position: "relative", height: "100vh", minHeight: 500, background: "#2d3436", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" },
   heroBg:        { position: "absolute", inset: 0, backgroundImage: "url('/mu.jpg')", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.15 },
   heroFloorArea: { position: "absolute", bottom: 0, width: "100%", height: "45%", background: "#f39c12", opacity: 0.9 },
-  heroBody:      { position: "relative", zIndex: 10, display: "flex", alignItems: "center", padding: "0 60px", gap: "40px", marginBottom: "40px" },
+  heroBody:      { position: "relative", zIndex: 10, display: "flex", alignItems: "center", padding: "0 60px", gap: "40px" },
   heroImageCol:  { flex: 1.2, display: "flex", justifyContent: "center" },
   busWrapper:    { width: "100%", maxWidth: "700px" },
   busImgStatic:  { width: "100%", height: "auto", filter: "drop-shadow(0 20px 30px rgba(0,0,0,0.4))" },
-  heroTextCol:   { flex: 1, color: "#fff", paddingTop: "100px", display: "flex", flexDirection: "column" },
+  heroTextCol:   { flex: 1, color: "#fff", paddingTop: "100px" },
   heroH1:        { fontSize: "clamp(28px,4vw,48px)", fontWeight: 800, lineHeight: 1.2, marginBottom: "20px" },
   heroBold:      { color: "#fff", textDecoration: "underline", textDecorationColor: "#E31E24" },
   heroP:         { fontSize: "clamp(13px,1.5vw,16px)", lineHeight: 1.65, opacity: 0.88, marginBottom: "30px", maxWidth: "500px" },
-  btnBook:       { display: "inline-flex", justifyContent: "center", alignItems: "center", minWidth: 170, background: "#1e272e", color: "#fff", padding: "14px 36px", border: "none", borderRadius: "8px", fontWeight: 700, fontSize: "15px", cursor: "pointer", transition: "transform 0.2s ease", marginBottom: "24px" },
-  statsStrip:    { position: "relative", margin: "0 auto 24px", maxWidth: 1200, background: "rgba(15,23,42,0.85)", backdropFilter: "blur(10px)", display: "flex", padding: "20px 26px", borderRadius: "14px", zIndex: 20, border: "1px solid rgba(255,255,255,0.07)" },
+  btnBook:       { background: "#1e272e", color: "#fff", padding: "14px 36px", border: "none", borderRadius: "8px", fontWeight: 700, fontSize: "15px", cursor: "pointer" },
+  statsStrip:    { position: "absolute", bottom: 32, left: "60px", right: "60px", background: "rgba(15,23,42,0.85)", backdropFilter: "blur(10px)", display: "flex", padding: "20px 26px", borderRadius: "14px", zIndex: 20, border: "1px solid rgba(255,255,255,0.07)" },
   stripItem:     { flex: 1, textAlign: "left" },
   stripLabel:    { fontSize: "10px", fontWeight: 700, color: "rgba(255,255,255,0.42)", marginBottom: "6px", letterSpacing: 1.2, textTransform: "uppercase" },
   stripVal:      { fontSize: "clamp(16px,2vw,20px)", fontWeight: 900, color: "#fff" },
