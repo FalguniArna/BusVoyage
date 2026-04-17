@@ -6,8 +6,6 @@ import Announcements  from "./Announcements";
 import Complaints     from "./Complaints";
 import LostFound      from "./LostFound";
 
-
-
 const NAV = [
   { section: "Main",      id: "dashboard",     label: "Dashboard",         icon: "🏠" },
   { section: "Transport", id: "tracking",      label: "Live Tracking",     icon: "📍", badge: null },
@@ -69,6 +67,7 @@ export default function StudentDashboard() {
   };
 
   const selectMenu = (id) => {
+    console.log('selectMenu called with id:', id);
     setActive(id);
     setSbOpen(false);
   };
@@ -269,7 +268,7 @@ function DashboardHome({ user, greeting, firstName, onNavigate }) {
             key={sc.id}
             className="sc-card"
             style={dh.scCard}
-            onClick={() => onNavigate(sc.id)}
+            onClick={() => { console.log('shortcut clicked:', sc.id); onNavigate(sc.id); }}
           >
             <div style={dh.scTop}>
               <div style={dh.scIcon}>{sc.icon}</div>
@@ -326,7 +325,6 @@ function DashboardHome({ user, greeting, firstName, onNavigate }) {
     </div>
   );
 }
-
 
 
 function ComingSoon({ icon, title }) {
@@ -617,7 +615,7 @@ const dh = {
   /* Shortcuts */
   shortcutGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(5, 1fr)",
+    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
     gap: 12,
   },
   scCard: {
