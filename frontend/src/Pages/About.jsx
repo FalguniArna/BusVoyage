@@ -274,7 +274,7 @@ export default function AboutUs() {
           <SectionHeader
             dark
             pill="The Team"
-            h2="Architecting the Future : The Minds Behind the Innovation."
+            h2="Architecting the Future : The Minds Behind the Innovation - "
             p="BusVoyage is a CSE project by Metropolitan University students — built in one month, from idea to deployment."
           />
           <div style={s.teamGrid} className="team-grid">
