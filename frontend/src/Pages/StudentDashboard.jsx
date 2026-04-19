@@ -6,19 +6,11 @@ import Announcements  from "./Announcements";
 import Complaints     from "./Complaints";
 import LostFound      from "./LostFound";
 
-/* ═══════════════════════════════════════════════════════════
-   STUDENT DASHBOARD  —  BusVoyage · Metropolitan University
-   Layout : Fixed left sidebar + scrollable right content
-   Theme  : White content area, dark navy sidebar, blue accents
-   Design : Clean card-based, professional, no heavy animations
-═══════════════════════════════════════════════════════════ */
-
-/* ─── Navigation config ─── */
 const NAV = [
   { section: "Main",      id: "dashboard",     label: "Dashboard",         icon: "🏠" },
   { section: "Transport", id: "tracking",      label: "Live Tracking",     icon: "📍", badge: null },
   { section: "Transport", id: "routes",        label: "Routes & Schedule", icon: "🗺️" },
-  { section: "Transport", id: "announcements", label: "Announcements",     icon: "📣", badge: 2 },
+  { section: "Transport", id: "announcements", label: "Announcements",     icon: "📣", badge: 1 },
   { section: "Services",  id: "complaints",    label: "Complaints",        icon: "💬" },
   { section: "Services",  id: "lostfound",     label: "Lost & Found",      icon: "🎒" },
   { section: "Account",   id: "profile",       label: "My Profile",        icon: "👤" },
@@ -215,7 +207,7 @@ function DashboardHome({ user, greeting, firstName, onNavigate }) {
   const SHORTCUTS = [
     { id: "tracking",      icon: "📍", title: "Live Tracking",      desc: "See where your bus is now",       badge: "● Live",   bBg: "rgba(16,185,129,0.15)",  bColor: "#4ade80" },
     { id: "routes",        icon: "🗺️", title: "Routes & Schedules", desc: "Full timetable for all 5 routes", badge: "5 routes", bBg: "rgba(255,255,255,0.06)", bColor: "#94a3b8" },
-    { id: "announcements", icon: "📣", title: "Announcements",       desc: "Latest notices from transport",   badge: "2 new",    bBg: "rgba(245,158,11,0.15)",  bColor: "#fbbf24" },
+    { id: "announcements", icon: "📣", title: "Announcements",       desc: "Latest notices from transport",   badge: "1 new",    bBg: "rgba(245,158,11,0.15)",  bColor: "#fbbf24" },
     { id: "complaints",    icon: "💬", title: "Complaints",          desc: "Report or track an issue",        badge: "Open",     bBg: "rgba(255,255,255,0.06)", bColor: "#94a3b8" },
     { id: "lostfound",     icon: "🎒", title: "Lost & Found",        desc: "Search or report lost items",     badge: "Search",   bBg: "rgba(255,255,255,0.06)", bColor: "#94a3b8" },
   ];
@@ -360,14 +352,14 @@ const layout = {
     display: "flex",
     height: "100vh",
     fontFamily: "'Segoe UI', system-ui, sans-serif",
-    background: "#0d1b2e",       /* ← dark navy — matches Driver screenshot */
+    background: "#0d1b2e",       
     overflow: "hidden",
     color: "#e2e8f0",
   },
   sidebar: {
     width: 248,
     flexShrink: 0,
-    background: "#060f1e",       /* ← slightly darker than content bg */
+    background: "#060f1e",      
     display: "flex",
     flexDirection: "column",
     height: "100vh",
@@ -499,7 +491,7 @@ const topbar = {
   right: { display: "flex", alignItems: "center", gap: 10, flexShrink: 0 },
 
   clock: {
-    fontSize: 13, fontWeight: 700, color: "#f59e0b",   /* ← amber clock matching Driver */
+    fontSize: 13, fontWeight: 700, color: "#f59e0b",   
     background: "rgba(245,158,11,0.1)",
     border: "1px solid rgba(245,158,11,0.2)",
     padding: "5px 12px", borderRadius: 8,
@@ -545,13 +537,9 @@ const topbar = {
   hamLine: { display: "block", height: 2, width: "100%", background: "#94a3b8", borderRadius: 2 },
 };
 
-/* ═══════════════════════════════════════════════════════════
-   DASHBOARD HOME STYLES
-═══════════════════════════════════════════════════════════ */
 const dh = {
   page: { display: "flex", flexDirection: "column", gap: 20 },
 
-  /* Banner — dark glass card */
   banner: {
     background: "linear-gradient(135deg, #0a1e45 0%, #0f2d6e 100%)",
     border: "1px solid rgba(59,130,246,0.2)",
@@ -606,12 +594,12 @@ const dh = {
   progressFill: { height: "100%", background: "linear-gradient(90deg,#3b82f6,#06b6d4)", borderRadius: 4 },
   pcSub:        { color: "#4a6fa5", fontSize: 11 },
 
-  /* Section headings */
+
   secHead:  { display: "flex", justifyContent: "space-between", alignItems: "center" },
   secTitle: { fontSize: 13, fontWeight: 700, color: "#e2e8f0" },
   secHint:  { fontSize: 11, color: "#2d5091" },
 
-  /* Stats grid — dark cards */
+
   statsGrid: {
     display: "grid",
     gridTemplateColumns: "repeat(4, 1fr)",
@@ -633,7 +621,6 @@ const dh = {
   statLabel: { fontSize: 12, fontWeight: 600, color: "#64748b" },
   statSub:   { fontSize: 11, color: "#2d5091" },
 
-  /* Shortcuts */
   shortcutGrid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
@@ -654,13 +641,13 @@ const dh = {
   scDesc:  { fontSize: 10.5, color: "#4a6fa5", lineHeight: 1.5, marginBottom: 10 },
   scLink:  { fontSize: 11, color: "#3b82f6", fontWeight: 700 },
 
-  /* Bottom row */
+
   bottomRow: {
     display: "grid", gridTemplateColumns: "1fr 1fr",
     gap: 16, paddingBottom: 8,
   },
 
-  /* Panel (dark card) */
+  
   panel: {
     background: "#0a1628",
     border: "1px solid rgba(255,255,255,0.06)",
@@ -674,7 +661,7 @@ const dh = {
   panelTitle: { fontSize: 13, fontWeight: 700, color: "#e2e8f0" },
   panelHint:  { fontSize: 10, color: "#2d5091" },
 
-  /* Activity */
+  
   actRow: {
     display: "flex", alignItems: "center", gap: 10,
     padding: "10px 12px", marginBottom: 8,
@@ -687,7 +674,7 @@ const dh = {
   actText: { flex: 1, fontSize: 12, color: "#94a3b8", lineHeight: 1.4, minWidth: 0 },
   actTime: { fontSize: 10, color: "#2d5091", whiteSpace: "nowrap", flexShrink: 0 },
 
-  /* Transport card rows */
+  
   tcActivePill: {
     fontSize: 10, fontWeight: 700, color: "#4ade80",
     background: "rgba(74,222,128,0.12)",
