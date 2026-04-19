@@ -273,8 +273,8 @@ export default function AboutUs() {
         <div style={s.secInner}>
           <SectionHeader
             dark
-            pill="Architecting the Future:"
-            h2="The Minds Behind the Innovation."
+            pill="The Team"
+            h2="Architecting the Future : The Minds Behind the Innovation."
             p="BusVoyage is a CSE project by Metropolitan University students — built in one month, from idea to deployment."
           />
           <div style={s.teamGrid} className="team-grid">
@@ -375,7 +375,7 @@ export default function AboutUs() {
         <div style={s.footerRule} />
         <div style={s.footerBottom}>
           <span>© 2026 BusVoyage · Metropolitan University · CSE Department</span>
-        
+          <span style={{ color:"#E31E24" }}>Made with ❤️ in Sylhet</span>
         </div>
       </footer>
     </div>
