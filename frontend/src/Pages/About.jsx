@@ -375,7 +375,7 @@ export default function AboutUs() {
         <div style={s.footerRule} />
         <div style={s.footerBottom}>
           <span>© 2026 BusVoyage · Metropolitan University · CSE Department</span>
-          <span style={{ color:"#E31E24" }}>Made with ❤️ in Sylhet</span>
+         
         </div>
       </footer>
     </div>
