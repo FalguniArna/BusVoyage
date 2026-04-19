@@ -6,6 +6,14 @@ import Announcements  from "./Announcements";
 import Complaints     from "./Complaints";
 import LostFound      from "./LostFound";
 
+/* ═══════════════════════════════════════════════════════════
+   STUDENT DASHBOARD  —  BusVoyage · Metropolitan University
+   Layout : Fixed left sidebar + scrollable right content
+   Theme  : White content area, dark navy sidebar, blue accents
+   Design : Clean card-based, professional, no heavy animations
+═══════════════════════════════════════════════════════════ */
+
+/* ─── Navigation config ─── */
 const NAV = [
   { section: "Main",      id: "dashboard",     label: "Dashboard",         icon: "🏠" },
   { section: "Transport", id: "tracking",      label: "Live Tracking",     icon: "📍", badge: null },
@@ -337,8 +345,17 @@ function ComingSoon({ icon, title }) {
   );
 }
 
+const cs = {
+  wrap:  { display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "60%", gap: 12, color: "#94a3b8" },
+  icon:  { fontSize: 56 },
+  title: { fontSize: 20, fontWeight: 700, color: "#0f172a" },
+  sub:   { fontSize: 14, color: "#94a3b8" },
+};
 
-const L = {
+/* ═══════════════════════════════════════════════════════════
+   LAYOUT STYLES
+═══════════════════════════════════════════════════════════ */
+const layout = {
   root: {
     display: "flex",
     height: "100vh",
@@ -382,7 +399,9 @@ const L = {
   },
 };
 
-
+/* ═══════════════════════════════════════════════════════════
+   SIDEBAR STYLES
+═══════════════════════════════════════════════════════════ */
 const sb = {
   brand: {
     display: "flex", alignItems: "center", gap: 10,
@@ -461,10 +480,12 @@ const sb = {
   },
 };
 
-
-const tb = {
-  bar: {
-    background: "#0a1628",      /* ← dark topbar matching Driver */
+/* ═══════════════════════════════════════════════════════════
+   TOPBAR STYLES
+═══════════════════════════════════════════════════════════ */
+const topbar = {
+  wrap: {
+    background: "#fff",
     height: 60,
     padding: "0 24px",
     display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -684,7 +705,7 @@ const dh = {
 /* ═══════════════════════════════════════════════════════════
    GLOBAL CSS
 ═══════════════════════════════════════════════════════════ */
-const CSS = `
+const GLOBAL_CSS = `
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   button { font-family: inherit; }
 
