@@ -288,7 +288,7 @@ export default function Home() {
           <div style={s.heroTextCol}>
             <div style={s.heroEyebrow} className="hero-fade-1">Campus Transport · Metropolitan University</div>
             <h1 style={s.heroH1} className="hero-fade-2">
-              Embark on a<br />
+              Embark on an<br />
               <span style={s.heroBold}>Unforgettable Journey</span><br />
               with BusVoyage
             </h1>
