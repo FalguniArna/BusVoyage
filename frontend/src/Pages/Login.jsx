@@ -32,20 +32,15 @@ export default function Login() {
   };
 
   return (
-    <div style={s.page}>
+    <div className="lp-page">
       <style>{CSS}</style>
 
-      {/* ── LEFT PANEL ── */}
-      <div style={s.left}>
-        {/* mu.jpg background */}
+      <div className="lp-left">
         <div style={s.leftBg} />
-        {/* dark overlay matching home hero */}
         <div style={s.leftOverlay} />
-        {/* orange floor strip — matches home hero floor */}
         <div style={s.leftFloor} />
 
         <div style={s.leftInner}>
-          {/* brand */}
           <div style={s.brand}>
             <span style={s.brandDot} />
             <span style={s.brandName}>BusVoyage</span>
@@ -61,15 +56,13 @@ export default function Login() {
             Smart schedules · Instant announcements
           </p>
 
-          {/* feature pills */}
-          <div style={s.pills}>
+          <div className="lp-pills" style={s.pills}>
             {["Live Tracking", "Crowd Status", "Announcements", "Routes"].map((p, i) => (
               <span key={i} style={s.pill}>{p}</span>
             ))}
           </div>
 
-          {/* stats */}
-          <div style={s.statsRow}>
+          <div className="lp-stats" style={s.statsRow}>
             {[["8+", "Buses"], ["5", "Routes"], ["1200+", "Students"]].map(([v, l], i) => (
               <div key={i} style={s.stat}>
                 <div style={s.statVal}>{v}</div>
@@ -82,11 +75,9 @@ export default function Login() {
         </div>
       </div>
 
-      {/* ── RIGHT PANEL ── */}
-      <div style={s.right}>
-        <div style={s.card}>
+      <div className="lp-right">
+        <div className="lp-card" style={s.card}>
 
-          {/* header */}
           <div style={s.cardHeader}>
             <div style={s.lockIcon}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
@@ -99,7 +90,6 @@ export default function Login() {
             <p style={s.cardSub}>Sign in to your BusVoyage account</p>
           </div>
 
-          {/* error */}
           {error && (
             <div style={s.errorBox}>
               <span style={{ fontSize: 14 }}>⚠</span>
@@ -107,9 +97,7 @@ export default function Login() {
             </div>
           )}
 
-          {/* form */}
           <form onSubmit={handleSubmit}>
-
             <div style={s.fieldWrap}>
               <label style={s.label}>Username</label>
               <div style={s.inputWrap}>
@@ -178,14 +166,12 @@ export default function Login() {
             </button>
           </form>
 
-          {/* divider */}
           <div style={s.divider}>
             <div style={s.divLine} />
             <span style={s.divText}>one portal for all roles</span>
             <div style={s.divLine} />
           </div>
 
-          {/* role chips */}
           <div style={s.roleRow}>
             {[
               { label: "Student", color: "#1d4ed8", bg: "#EFF6FF", border: "#93C5FD" },
@@ -199,7 +185,6 @@ export default function Login() {
           </div>
           <p style={s.roleHint}>We'll redirect you automatically based on your role.</p>
 
-          {/* switch */}
           <p style={s.switchText}>
             Don't have an account?{" "}
             <Link to="/register" style={s.switchLink}>Create one →</Link>
@@ -212,11 +197,37 @@ export default function Login() {
   );
 }
 
-/* ════ CSS ════ */
 const CSS = `
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+  .lp-page {
+    min-height: 100vh;
+    display: flex;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+  }
+
+  .lp-left {
+    flex: 0 0 44%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 48px;
+    overflow: hidden;
+    min-height: 100vh;
+  }
+
+  .lp-right {
+    flex: 1;
+    background: #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px;
+  }
 
   .submitBtn:hover:not(:disabled) {
     background: #1a1a2e !important;
@@ -231,60 +242,44 @@ const CSS = `
     box-shadow: 0 0 0 3px rgba(30,39,46,0.08) !important;
   }
 
-  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .lp-left { flex: 0 0 46%; padding: 48px 36px; }
+  }
+
   @media (max-width: 768px) {
-    .login-page {
-      flex-direction: column !important;
+    .lp-page  { flex-direction: column; }
+    .lp-left  {
+      flex: none;
+      min-height: auto;
+      padding: 44px 32px 72px;
+      width: 100%;
     }
-    .login-left {
-      min-height: 260px !important;
-      flex: none !important;
-      padding: 36px 28px 80px !important;
-    }
-    .login-left h1 {
-      font-size: 26px !important;
-    }
-    .login-right {
-      flex: 1 !important;
-      padding: 32px 20px !important;
-    }
-    .login-card {
-      padding: 28px 20px !important;
-    }
-    .login-stats {
-      gap: 20px !important;
-    }
-    .login-pills {
-      gap: 6px !important;
-    }
+    .lp-right { padding: 32px 24px 40px; }
+    .lp-card  { padding: 28px 22px !important; }
+    .lp-pills { gap: 6px !important; }
+    .lp-stats { gap: 20px !important; }
+  }
+
+  @media (max-width: 600px) {
+    .lp-left  { padding: 36px 24px 64px; }
+    .lp-right { padding: 28px 18px; }
+    .lp-card  { padding: 26px 20px !important; border-radius: 16px !important; }
   }
 
   @media (max-width: 480px) {
-    .login-left { display: none !important; }
-    .login-right { padding: 24px 16px !important; }
-    .login-card { border-radius: 16px !important; padding: 24px 18px !important; }
+    .lp-left  { padding: 28px 20px 56px; }
+    .lp-right { padding: 24px 16px; }
+    .lp-card  { padding: 24px 18px !important; border-radius: 16px !important; }
+    .lp-pills { display: none !important; }
+  }
+
+  @media (max-width: 380px) {
+    .lp-left  { padding: 24px 16px 52px; }
+    .lp-stats { gap: 14px !important; }
   }
 `;
 
-/* ════ STYLES ════ */
 const s = {
-  page: {
-    minHeight: "100vh",
-    display: "flex",
-    fontFamily: "'Inter', 'Segoe UI', sans-serif",
-  },
-
-  /* ── LEFT ── */
-  left: {
-    flex: "0 0 44%",
-    position: "relative",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "60px 48px",
-    overflow: "hidden",
-    minHeight: "100vh",
-  },
   leftBg: {
     position: "absolute", inset: 0,
     backgroundImage: "url('/mu.jpg')",
@@ -292,13 +287,11 @@ const s = {
     backgroundPosition: "center top",
     opacity: 1,
   },
-  /* dark overlay — same as home hero */
   leftOverlay: {
     position: "absolute", inset: 0,
     background: "linear-gradient(160deg, rgba(0,10,30,0.93) 0%, rgba(0,20,50,0.88) 60%, rgba(0,30,60,0.82) 100%)",
     zIndex: 1,
   },
-  /* orange floor strip — matches home heroFloorArea */
   leftFloor: {
     position: "absolute", bottom: 0, left: 0, right: 0,
     height: "28%",
@@ -307,143 +300,44 @@ const s = {
     zIndex: 1,
     clipPath: "polygon(0 30%, 100% 0%, 100% 100%, 0 100%)",
   },
-
   leftInner: {
     position: "relative", zIndex: 2, maxWidth: 380,
   },
-
-  brand: { display: "flex", alignItems: "center", gap: 8, marginBottom: 32 },
-  brandDot: {
-    width: 10, height: 10, borderRadius: "50%",
-    background: "#E31E24",
-    display: "inline-block",
-    animation: "pulse 2.5s infinite",
-    flexShrink: 0,
-  },
+  brand:     { display: "flex", alignItems: "center", gap: 8, marginBottom: 32 },
+  brandDot:  { width: 10, height: 10, borderRadius: "50%", background: "#E31E24", display: "inline-block", animation: "pulse 2.5s infinite", flexShrink: 0 },
   brandName: { fontSize: 20, fontWeight: 900, color: "#fff", letterSpacing: "-0.03em" },
   brandMU:   { fontSize: 13, color: "rgba(255,255,255,0.38)", fontWeight: 500 },
-
-  tagline: {
-    fontSize: 32, fontWeight: 900, color: "#fff",
-    lineHeight: 1.25, marginBottom: 14,
-  },
-  taglineAccent: { color: "#f39c12" },
-  taglineSub: {
-    fontSize: 13, color: "rgba(255,255,255,0.68)",
-    lineHeight: 1.75, marginBottom: 26,
-  },
-
-  pills: { display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 30 },
-  pill: {
-    background: "rgba(255,255,255,0.1)",
-    border: "1px solid rgba(255,255,255,0.2)",
-    color: "#fff", fontSize: 11, fontWeight: 600,
-    padding: "6px 13px", borderRadius: 20,
-  },
-
-  statsRow: {
-    display: "flex", gap: 28,
-    borderTop: "1px solid rgba(255,255,255,0.15)",
-    paddingTop: 20, marginBottom: 24,
-  },
-  stat:      { textAlign: "center" },
-  statVal:   { fontSize: 22, fontWeight: 900, color: "#f39c12" },
-  statLabel: { fontSize: 11, color: "rgba(255,255,255,0.6)", marginTop: 2 },
-
-  uniTag: {
-    fontSize: 12, color: "rgba(255,255,255,0.45)",
-    borderTop: "1px solid rgba(255,255,255,0.1)",
-    paddingTop: 16,
-  },
-
-  /* ── RIGHT ── */
-  right: {
-    flex: 1,
-    background: "#f1f5f9",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "40px 32px",
-  },
-
-  card: {
-    background: "#fff",
-    borderRadius: 20,
-    padding: "38px 34px",
-    width: "100%", maxWidth: 440,
-    boxShadow: "0 4px 40px rgba(0,0,0,0.09)",
-    border: "1px solid #e8ecf1",
-  },
-
-  cardHeader: { textAlign: "center", marginBottom: 28 },
-  lockIcon: {
-    width: 56, height: 56, borderRadius: "50%",
-    background: "#f1f5f9",
-    border: "1px solid #e2e8f0",
-    display: "flex", alignItems: "center", justifyContent: "center",
-    margin: "0 auto 14px",
-  },
-  cardTitle: { fontSize: 22, fontWeight: 900, color: "#1e272e", marginBottom: 6 },
-  cardSub:   { fontSize: 13, color: "#94a3b8" },
-
-  errorBox: {
-    display: "flex", alignItems: "center", gap: 10,
-    background: "#FEF2F2", border: "1px solid #FECACA",
-    color: "#dc2626", fontSize: 13, fontWeight: 500,
-    padding: "10px 14px", borderRadius: 10, marginBottom: 20,
-  },
-
-  fieldWrap: { marginBottom: 16 },
-  label:     { display: "block", fontSize: 12, fontWeight: 700, color: "#475569", marginBottom: 7, textTransform: "uppercase", letterSpacing: 0.5 },
-  inputWrap: { position: "relative", display: "flex", alignItems: "center" },
-  inputIcon: {
-    position: "absolute", left: 13,
-    display: "flex", alignItems: "center",
-    pointerEvents: "none",
-  },
-  input: {
-    width: "100%", padding: "11px 14px 11px 42px",
-    border: "1.5px solid #e2e8f0",
-    borderRadius: 10, fontSize: 14, color: "#1e272e",
-    background: "#f8fafc",
-    outline: "none", boxSizing: "border-box",
-    transition: "border-color 0.2s, box-shadow 0.2s",
-  },
-  eyeBtn: {
-    position: "absolute", right: 12,
-    background: "none", border: "none",
-    cursor: "pointer",
-    display: "flex", alignItems: "center",
-    padding: 4,
-  },
-  forgot: {
-    fontSize: 12, color: "#64748b",
-    cursor: "pointer", fontWeight: 600,
-    transition: "color 0.2s",
-  },
-
-  submitBtn: {
-    width: "100%", padding: "13px",
-    background: "#1e272e",
-    color: "#fff", border: "none", borderRadius: 10,
-    fontSize: 15, fontWeight: 800, cursor: "pointer",
-    marginTop: 6,
-    boxShadow: "0 4px 16px rgba(30,39,46,0.28)",
-    letterSpacing: 0.3,
-    transition: "all 0.2s ease",
-  },
-
-  divider: { display: "flex", alignItems: "center", gap: 10, margin: "22px 0" },
-  divLine: { flex: 1, height: 1, background: "#f1f5f9" },
-  divText: { fontSize: 11, color: "#cbd5e1", fontWeight: 600, whiteSpace: "nowrap" },
-
-  roleRow:  { display: "flex", gap: 8, justifyContent: "center", marginBottom: 8 },
-  roleChip: { fontSize: 11, fontWeight: 700, padding: "4px 12px", borderRadius: 20 },
-  roleHint: { textAlign: "center", fontSize: 11, color: "#94a3b8", marginBottom: 22 },
-
-  switchText: { textAlign: "center", fontSize: 13, color: "#64748b", marginTop: 4 },
-  switchLink: { color: "#1e272e", fontWeight: 800, textDecoration: "none" },
-
-  footNote: { marginTop: 20, fontSize: 12, color: "#94a3b8", textAlign: "center" },
+  tagline:        { fontSize: 32, fontWeight: 900, color: "#fff", lineHeight: 1.25, marginBottom: 14 },
+  taglineAccent:  { color: "#f39c12" },
+  taglineSub:     { fontSize: 13, color: "rgba(255,255,255,0.68)", lineHeight: 1.75, marginBottom: 26 },
+  pills:          { display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 30 },
+  pill:           { background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", color: "#fff", fontSize: 11, fontWeight: 600, padding: "6px 13px", borderRadius: 20 },
+  statsRow:       { display: "flex", gap: 28, borderTop: "1px solid rgba(255,255,255,0.15)", paddingTop: 20, marginBottom: 24 },
+  stat:           { textAlign: "center" },
+  statVal:        { fontSize: 22, fontWeight: 900, color: "#f39c12" },
+  statLabel:      { fontSize: 11, color: "rgba(255,255,255,0.6)", marginTop: 2 },
+  uniTag:         { fontSize: 12, color: "rgba(255,255,255,0.45)", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 16 },
+  card:           { background: "#fff", borderRadius: 20, padding: "38px 34px", width: "100%", maxWidth: 440, boxShadow: "0 4px 40px rgba(0,0,0,0.09)", border: "1px solid #e8ecf1" },
+  cardHeader:     { textAlign: "center", marginBottom: 28 },
+  lockIcon:       { width: 56, height: 56, borderRadius: "50%", background: "#f1f5f9", border: "1px solid #e2e8f0", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 14px" },
+  cardTitle:      { fontSize: 22, fontWeight: 900, color: "#1e272e", marginBottom: 6 },
+  cardSub:        { fontSize: 13, color: "#94a3b8" },
+  errorBox:       { display: "flex", alignItems: "center", gap: 10, background: "#FEF2F2", border: "1px solid #FECACA", color: "#dc2626", fontSize: 13, fontWeight: 500, padding: "10px 14px", borderRadius: 10, marginBottom: 20 },
+  fieldWrap:      { marginBottom: 16 },
+  label:          { display: "block", fontSize: 12, fontWeight: 700, color: "#475569", marginBottom: 7, textTransform: "uppercase", letterSpacing: 0.5 },
+  inputWrap:      { position: "relative", display: "flex", alignItems: "center" },
+  inputIcon:      { position: "absolute", left: 13, display: "flex", alignItems: "center", pointerEvents: "none" },
+  input:          { width: "100%", padding: "11px 14px 11px 42px", border: "1.5px solid #e2e8f0", borderRadius: 10, fontSize: 14, color: "#1e272e", background: "#f8fafc", outline: "none", boxSizing: "border-box", transition: "border-color 0.2s, box-shadow 0.2s" },
+  eyeBtn:         { position: "absolute", right: 12, background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", padding: 4 },
+  forgot:         { fontSize: 12, color: "#64748b", cursor: "pointer", fontWeight: 600, transition: "color 0.2s" },
+  submitBtn:      { width: "100%", padding: "13px", background: "#1e272e", color: "#fff", border: "none", borderRadius: 10, fontSize: 15, fontWeight: 800, cursor: "pointer", marginTop: 6, boxShadow: "0 4px 16px rgba(30,39,46,0.28)", letterSpacing: 0.3, transition: "all 0.2s ease" },
+  divider:        { display: "flex", alignItems: "center", gap: 10, margin: "22px 0" },
+  divLine:        { flex: 1, height: 1, background: "#f1f5f9" },
+  divText:        { fontSize: 11, color: "#cbd5e1", fontWeight: 600, whiteSpace: "nowrap" },
+  roleRow:        { display: "flex", gap: 8, justifyContent: "center", marginBottom: 8 },
+  roleChip:       { fontSize: 11, fontWeight: 700, padding: "4px 12px", borderRadius: 20 },
+  roleHint:       { textAlign: "center", fontSize: 11, color: "#94a3b8", marginBottom: 22 },
+  switchText:     { textAlign: "center", fontSize: 13, color: "#64748b", marginTop: 4 },
+  switchLink:     { color: "#1e272e", fontWeight: 800, textDecoration: "none" },
+  footNote:       { marginTop: 20, fontSize: 12, color: "#94a3b8", textAlign: "center" },
 };
