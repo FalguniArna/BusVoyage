@@ -60,14 +60,13 @@ const GALLERY = [
   "/bus3.jpeg",
   "/mu.jpg",
   "/bus.png",
-  
 ];
 
 const FEATURES = [
-  { icon: "📡", title: "Live Bus Tracking",     desc: "See exactly where your bus is — real-time updates from drivers.",  bg: "rgba(227,30,36,0.10)",  line: "#E31E24" },
-  { icon: "💺", title: "Crowd Status",           desc: "Know seat availability before you walk to the stop.",              bg: "rgba(0,43,91,0.10)",    line: "#002B5B" },
-  { icon: "🔔", title: "Smart Announcements",    desc: "Instant transport notices — no more WhatsApp chaos.",              bg: "rgba(255,193,7,0.15)",  line: "#d97706" },
-  { icon: "🧾", title: "Complaints & Feedback",  desc: "Report issues and track resolution — all in one place.",           bg: "rgba(0,43,91,0.06)",    line: "#002B5B" },
+  { icon: "📡", title: "Live Bus Tracking",    desc: "See exactly where your bus is — real-time updates from drivers.",  bg: "rgba(227,30,36,0.10)",  line: "#E31E24" },
+  { icon: "💺", title: "Crowd Status",          desc: "Know seat availability before you walk to the stop.",              bg: "rgba(0,43,91,0.10)",    line: "#002B5B" },
+  { icon: "🔔", title: "Smart Announcements",   desc: "Instant transport notices — no more WhatsApp chaos.",              bg: "rgba(255,193,7,0.15)",  line: "#d97706" },
+  { icon: "🧾", title: "Complaints & Feedback", desc: "Report issues and track resolution — all in one place.",           bg: "rgba(0,43,91,0.06)",    line: "#002B5B" },
 ];
 
 const STEPS = [
@@ -78,24 +77,24 @@ const STEPS = [
 ];
 
 const IMPACTS = [
-  { num: 8,    suffix: "+", label: "Active Buses"   },
-  { num: 5,    suffix: "",  label: "Routes"          },
-  { num: 1200, suffix: "+", label: "Daily Students"  },
-  { num: 98,   suffix: "%", label: "On-Time Rate"    },
-  { num: 32,   suffix: "",  label: "Bus Stops"       },
+  { num: 8,    suffix: "+", label: "Active Buses"  },
+  { num: 5,    suffix: "",  label: "Routes"         },
+  { num: 1200, suffix: "+", label: "Daily Students" },
+  { num: 98,   suffix: "%", label: "On-Time Rate"   },
+  { num: 32,   suffix: "",  label: "Bus Stops"      },
 ];
 
 const MAIN_ROUTES = [
-  { route: "Modina Market, Ambarkhana, Chouhatta, Kumarpara, Tilagor, Campus",         arrival: "08:10 AM", departure: "—",        bus: "11-0018", driver: "Sajib",   for: "Teacher Transport" },
-  { route: "Campus, Shahi Eidgah, Kumarpara, Chouhatta, Rikabibazar, Subidbazar",      arrival: "—",        departure: "04:00 PM", bus: "11-0010", driver: "Shahdat", for: "Teacher Transport" },
-  { route: "Subidbazar, Rikabibazar, Kumarpara, Shahi Eidgah, Tilagor, Campus",        arrival: "09:27 AM", departure: "—",        bus: "11-0967", driver: "Monir",   for: "Teacher & Staff"   },
-  { route: "Campus, Shahi Eidgah, Kumarpara, Chouhatta, Rikabibazar, Subidbazar",      arrival: "—",        departure: "06:00 PM", bus: "11-0010", driver: "Shahdat", for: "Teacher & Staff"   },
-  { route: "Subidbazar, Ambarkhana, Shahi Eidgah, Tilagor, Campus",                    arrival: "08:10 AM", departure: "05:00 PM", bus: "11-0944", driver: "Nasir",   for: "Student"           },
-  { route: "Rikabibazar, Chouhatta, Kumarpara, Shahi Eidgah, Tilagor, Campus",         arrival: "08:15 AM", departure: "02:30 PM", bus: "11-0967", driver: "Monir",   for: "Student"           },
-  { route: "Rikabibazar, Subidbazar, Ambarkhana, Shahi Eidgah, Tilagor, Campus",       arrival: "08:10 AM", departure: "02:30 PM", bus: "11-0900", driver: "Farid",   for: "Student"           },
-  { route: "Temukhi, Modina Market, Subidbazar, Ambarkhana, Tilagor, Campus",          arrival: "08:02 AM", departure: "05:00 PM", bus: "BRTC",    driver: "—",       for: "Student"           },
-  { route: "Modina Market, Subidbazar, Ambarkhana, Shahi Eidgah, Tilagor, Campus",     arrival: "08:10 AM", departure: "02:30 PM", bus: "BRTC",    driver: "—",       for: "Student"           },
-  { route: "Humayun Rashid Chottor, Kumarpara, Shibgonj, Tilagor, Campus",             arrival: "08:15 AM", departure: "05:00 PM", bus: "BRTC",    driver: "—",       for: "Student"           },
+  { route: "Modina Market, Ambarkhana, Chouhatta, Kumarpara, Tilagor, Campus",        arrival: "08:10 AM", departure: "—",        bus: "11-0018", driver: "Sajib",   for: "Teacher Transport" },
+  { route: "Campus, Shahi Eidgah, Kumarpara, Chouhatta, Rikabibazar, Subidbazar",     arrival: "—",        departure: "04:00 PM", bus: "11-0010", driver: "Shahdat", for: "Teacher Transport" },
+  { route: "Subidbazar, Rikabibazar, Kumarpara, Shahi Eidgah, Tilagor, Campus",       arrival: "09:27 AM", departure: "—",        bus: "11-0967", driver: "Monir",   for: "Teacher & Staff"   },
+  { route: "Campus, Shahi Eidgah, Kumarpara, Chouhatta, Rikabibazar, Subidbazar",     arrival: "—",        departure: "06:00 PM", bus: "11-0010", driver: "Shahdat", for: "Teacher & Staff"   },
+  { route: "Subidbazar, Ambarkhana, Shahi Eidgah, Tilagor, Campus",                   arrival: "08:10 AM", departure: "05:00 PM", bus: "11-0944", driver: "Nasir",   for: "Student"           },
+  { route: "Rikabibazar, Chouhatta, Kumarpara, Shahi Eidgah, Tilagor, Campus",        arrival: "08:15 AM", departure: "02:30 PM", bus: "11-0967", driver: "Monir",   for: "Student"           },
+  { route: "Rikabibazar, Subidbazar, Ambarkhana, Shahi Eidgah, Tilagor, Campus",      arrival: "08:10 AM", departure: "02:30 PM", bus: "11-0900", driver: "Farid",   for: "Student"           },
+  { route: "Temukhi, Modina Market, Subidbazar, Ambarkhana, Tilagor, Campus",         arrival: "08:02 AM", departure: "05:00 PM", bus: "BRTC",    driver: "—",       for: "Student"           },
+  { route: "Modina Market, Subidbazar, Ambarkhana, Shahi Eidgah, Tilagor, Campus",    arrival: "08:10 AM", departure: "02:30 PM", bus: "BRTC",    driver: "—",       for: "Student"           },
+  { route: "Humayun Rashid Chottor, Kumarpara, Shibgonj, Tilagor, Campus",            arrival: "08:15 AM", departure: "05:00 PM", bus: "BRTC",    driver: "—",       for: "Student"           },
 ];
 
 const SHUTTLE = [
@@ -213,19 +212,13 @@ const modal = {
 
 export default function Home() {
   const navigate = useNavigate();
-  const [scrolled,     setScrolled]    = useState(false);
-  const [supportModal, setSupportModal]= useState(null);
-  const [mobileMenu,   setMobileMenu]  = useState(false);
-  const [schedTab,     setSchedTab]    = useState(0);
-  const [galSlide,     setGalSlide]    = useState(0);
+  const [supportModal, setSupportModal] = useState(null);
+  const [mobileMenu,   setMobileMenu]   = useState(false);
+  const [schedTab,     setSchedTab]     = useState(0);
+  const [galSlide,     setGalSlide]     = useState(0);
 
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", fn);
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
-
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollToTop      = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollToTimetable = () => document.getElementById("timetable-section")?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <div style={s.page}>
@@ -233,8 +226,7 @@ export default function Home() {
 
       {supportModal && <SupportModal type={supportModal} onClose={() => setSupportModal(null)} />}
 
-     
-      <nav style={{ ...s.nav, ...(scrolled ? s.navSolid : {}) }}>
+      <nav style={s.nav}>
         <div style={s.brand}>
           <div style={s.brandDot} />
           <span style={s.brandName}>BusVoyage</span>
@@ -243,10 +235,10 @@ export default function Home() {
         <div style={s.navCenter} className="nav-desktop">
           {[
             { label: "Home",              action: scrollToTop },
-            { label: "Routes & Schedule", action: () => document.getElementById("timetable-section")?.scrollIntoView({ behavior: "smooth" }) },
+            { label: "Routes & Schedule", action: scrollToTimetable },
             { label: "About",             action: () => navigate("/about") },
           ].map((l, i) => (
-            <span key={i} style={s.navLink} onClick={l.action}>{l.label}</span>
+            <span key={i} style={s.navLink} className="nav-link-hover" onClick={l.action}>{l.label}</span>
           ))}
         </div>
         <div style={s.navRight} className="nav-desktop">
@@ -261,9 +253,9 @@ export default function Home() {
       {mobileMenu && (
         <div style={s.mobileDrawer}>
           {[
-            { label: "Home",              action: () => { scrollToTop(); setMobileMenu(false); } },
-            { label: "Routes & Schedule", action: () => { document.getElementById("timetable-section")?.scrollIntoView({ behavior: "smooth" }); setMobileMenu(false); } },
-            { label: "About",             action: () => { navigate("/about"); setMobileMenu(false); } },
+            { label: "Home",              action: () => { scrollToTop();       setMobileMenu(false); } },
+            { label: "Routes & Schedule", action: () => { scrollToTimetable(); setMobileMenu(false); } },
+            { label: "About",             action: () => { navigate("/about");  setMobileMenu(false); } },
           ].map((l, i) => (
             <div key={i} style={s.mobileLink} onClick={l.action}>{l.label}</div>
           ))}
@@ -274,7 +266,7 @@ export default function Home() {
         </div>
       )}
 
-    
+      {/* HERO */}
       <section style={s.hero}>
         <div style={s.heroBg} />
         <div style={s.heroFloorArea} />
@@ -288,7 +280,7 @@ export default function Home() {
           <div style={s.heroTextCol}>
             <div style={s.heroEyebrow} className="hero-fade-1">Campus Transport · Metropolitan University</div>
             <h1 style={s.heroH1} className="hero-fade-2">
-              Embark on an<br />
+              Embark on a<br />
               <span style={s.heroBold}>Unforgettable Journey</span><br />
               with BusVoyage
             </h1>
@@ -298,13 +290,10 @@ export default function Home() {
             </p>
             <div className="hero-fade-4" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
               <button style={s.btnBook}  onClick={() => navigate("/about")}>About Us</button>
-              <button style={s.btnTrack} onClick={() => document.getElementById("timetable-section")?.scrollIntoView({ behavior: "smooth" })}>
-                Routes &amp; Schedule →
-              </button>
+              <button style={s.btnTrack} onClick={scrollToTimetable}>Routes &amp; Schedule →</button>
             </div>
           </div>
         </div>
-
         <div style={s.statsStrip} className="stats-strip">
           {[
             { label: "BUSES ACTIVE", val: "8+"      },
@@ -324,7 +313,7 @@ export default function Home() {
         </div>
       </section>
 
-      
+      {/* FEATURES */}
       <section style={s.featSec}>
         <Reveal>
           <div style={s.secPill}>What We Offer</div>
@@ -344,7 +333,7 @@ export default function Home() {
         </div>
       </section>
 
-     
+      {/* ROUTES & SCHEDULE */}
       <section id="timetable-section" style={s.routeSec}>
         <div style={s.routeInner}>
           <Reveal>
@@ -458,6 +447,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* HOW IT WORKS */}
       <section style={s.howSec}>
         <Reveal>
           <div style={s.secPill}>Simple Process</div>
@@ -478,7 +468,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* GALLERY*/}
+      {/* GALLERY */}
       <section style={s.galSec}>
         <Reveal>
           <div style={{ textAlign: "center", marginBottom: 36 }}>
@@ -486,31 +476,18 @@ export default function Home() {
             <h2 style={{ ...s.secH2, color: "#fff", marginBottom: 0 }}>Our campus &amp; fleet.</h2>
           </div>
         </Reveal>
-
         <div style={{ position: "relative", maxWidth: 1200, margin: "0 auto" }}>
           <div style={s.galGrid} className="gal-grid">
             {GALLERY.slice(galSlide, galSlide + 3).map((src, i) => (
               <Reveal key={galSlide + i} delay={i * 0.07}>
-                <div
-                  style={{ ...s.galTile, backgroundImage: `url('${src}')` }}
-                  className="gal-tile"
-                />
+                <div style={{ ...s.galTile, backgroundImage: `url('${src}')` }} className="gal-tile" />
               </Reveal>
             ))}
           </div>
-
-          <button
-            onClick={() => setGalSlide(Math.max(0, galSlide - 3))}
-            disabled={galSlide === 0}
-            style={{ ...s.galArrow, left: -56, opacity: galSlide === 0 ? 0.35 : 1 }}
-          >←</button>
-
-          <button
-            onClick={() => setGalSlide(Math.min(GALLERY.length - 3, galSlide + 3))}
-            disabled={galSlide >= GALLERY.length - 3}
-            style={{ ...s.galArrow, right: -56, opacity: galSlide >= GALLERY.length - 3 ? 0.35 : 1 }}
-          >→</button>
-
+          <button onClick={() => setGalSlide(Math.max(0, galSlide - 3))} disabled={galSlide === 0}
+            style={{ ...s.galArrow, left: -56, opacity: galSlide === 0 ? 0.35 : 1 }}>←</button>
+          <button onClick={() => setGalSlide(Math.min(GALLERY.length - 3, galSlide + 3))} disabled={galSlide >= GALLERY.length - 3}
+            style={{ ...s.galArrow, right: -56, opacity: galSlide >= GALLERY.length - 3 ? 0.35 : 1 }}>→</button>
           <div style={{ textAlign: "center", marginTop: 16, color: "rgba(255,255,255,0.45)", fontSize: 13 }}>
             {galSlide + 1}–{Math.min(galSlide + 3, GALLERY.length)} of {GALLERY.length}
           </div>
@@ -558,7 +535,7 @@ export default function Home() {
               <div style={s.footerHead}>Navigate</div>
               {[
                 { label: "Home",              action: scrollToTop },
-                { label: "Routes & Schedule", action: () => document.getElementById("timetable-section")?.scrollIntoView({ behavior: "smooth" }) },
+                { label: "Routes & Schedule", action: scrollToTimetable },
                 { label: "About Us",          action: () => navigate("/about") },
               ].map(l => <div key={l.label} style={s.footerLink} onClick={l.action}>{l.label}</div>)}
             </div>
@@ -600,10 +577,11 @@ const CSS = `
   .hero-fade-4 { animation:heroFade 0.8s ease 0.8s both; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
 
+  .nav-link-hover:hover { color:#fff !important; }
   .lift:hover     { transform:translateY(-6px) !important; box-shadow:0 18px 44px rgba(0,0,0,0.10) !important; transition:0.3s; }
   .liftDark:hover { transform:translateY(-3px) !important; background:rgba(255,255,255,0.09) !important; transition:0.3s; }
-  .gal-tile { transition:transform 0.25s ease, box-shadow 0.25s ease; cursor:pointer; }
-  .gal-tile:hover { transform:scale(1.03); box-shadow:0 12px 32px rgba(0,0,0,0.5) !important; }
+  .gal-tile { transition:transform 0.25s ease; cursor:pointer; }
+  .gal-tile:hover { transform:scale(1.03); }
 
   .nav-desktop { display:flex; }
   .nav-mobile  { display:none !important; }
@@ -633,8 +611,14 @@ const CSS = `
 const s = {
   page: { fontFamily: "'Inter','Segoe UI',sans-serif", background: "#f8f9fa" },
 
-  nav:         { position: "fixed", top: 0, left: 0, right: 0, display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0 60px", height: 62, zIndex: 1000, transition: "0.3s" },
-  navSolid:    { background: "#0f172a", boxShadow: "0 2px 10px rgba(0,0,0,0.2)" },
+  /* NAV — always solid, no scroll toggle */
+  nav: {
+    position: "fixed", top: 0, left: 0, right: 0,
+    display: "flex", justifyContent: "space-between", alignItems: "center",
+    padding: "0 60px", height: 62, zIndex: 1000,
+    background: "#0f172a",
+    boxShadow: "0 2px 10px rgba(0,0,0,0.25)",
+  },
   brand:       { display: "flex", alignItems: "center", gap: 9, color: "#fff" },
   brandDot:    { width: 9, height: 9, borderRadius: "50%", background: "#E31E24", animation: "pulse 2.5s infinite", flexShrink: 0 },
   brandName:   { fontWeight: 900, fontSize: 19, color: "#fff" },
@@ -683,10 +667,9 @@ const s = {
 
   routeSec:   { padding: "80px clamp(24px,6vw,60px)", background: "#0a0f1e" },
   routeInner: { maxWidth: 1200, margin: "0 auto" },
-
-  darkTable: { width: "100%", borderCollapse: "collapse", fontSize: 13, background: "transparent" },
-  darkTh:    { background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.65)", padding: "11px 14px", textAlign: "left", fontSize: 11, fontWeight: 700, letterSpacing: 0.8, textTransform: "uppercase", whiteSpace: "nowrap", borderBottom: "1px solid rgba(255,255,255,0.1)" },
-  darkTd:    { padding: "11px 14px", color: "rgba(255,255,255,0.65)", borderBottom: "1px solid rgba(255,255,255,0.05)", fontSize: 13 },
+  darkTable:  { width: "100%", borderCollapse: "collapse", fontSize: 13, background: "transparent" },
+  darkTh:     { background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.65)", padding: "11px 14px", textAlign: "left", fontSize: 11, fontWeight: 700, letterSpacing: 0.8, textTransform: "uppercase", whiteSpace: "nowrap", borderBottom: "1px solid rgba(255,255,255,0.1)" },
+  darkTd:     { padding: "11px 14px", color: "rgba(255,255,255,0.65)", borderBottom: "1px solid rgba(255,255,255,0.05)", fontSize: 13 },
 
   howSec:  { padding: "80px clamp(24px,6vw,80px)", background: "#f1f5f9", textAlign: "center" },
   howRow:  { display: "flex", justifyContent: "center", gap: 0, maxWidth: 900, margin: "0 auto", flexWrap: "wrap" },
@@ -725,4 +708,5 @@ const s = {
   footerHead:   { fontSize: 10, fontWeight: 700, letterSpacing: 2.5, textTransform: "uppercase", color: "#f39c12", marginBottom: 16 },
   footerLink:   { fontSize: 13, color: "rgba(255,255,255,0.32)", marginBottom: 10, cursor: "pointer", transition: "color 0.2s" },
   footerRule:   { height: 1, background: "rgba(255,255,255,0.06)", marginBottom: 24 },
-  footerBottom: { display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10, fontSize: 12, color: "rgba(255,255,255,0.2)" },};
+  footerBottom: { display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 10, fontSize: 12, color: "rgba(255,255,255,0.2)" },
+};
