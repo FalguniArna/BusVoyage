@@ -340,8 +340,5 @@ const s = {
   switchText:     { textAlign: "center", fontSize: 13, color: "#64748b", marginTop: 4 },
   switchLink:     { color: "#1e272e", fontWeight: 800, textDecoration: "none" },
   footNote:       { marginTop: 20, fontSize: 12, color: "#94a3b8", textAlign: "center" },
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> a3dca070ce06f9761cd7bd134bd3f3b8ac015b9d
+
