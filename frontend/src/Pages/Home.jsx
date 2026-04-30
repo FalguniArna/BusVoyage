@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
+// Helper: convert ASCII digits to Bengali digits
 function toBn(str) {
   return String(str).replace(/[0-9]/g, d => "০১২৩৪৫৬৭৮৯"[d]);
 }
+
 
 function toBnTime(t) {
   if (!t || t === "—") return t;
@@ -177,7 +178,7 @@ const T = {
     featH2a: "এমইউ শিক্ষার্থীদের জন্য তৈরি,",
     featH2b: "প্রতিটি একক দিন।",
     features: [
-      { icon: "📡", title: "লাইভ বাস ট্র্যাকিং", desc: "মানচিত্রে বাসের বর্তমান অবস্থান দেখুন সরাসরি চালকের ডিভাইস থেকে।" },
+      { icon: "📡", title: "লাইভ বাস ট্র্যাকিং", desc: "বাসের বর্তমান অবস্থান দেখুন সরাসরি চালকের ডিভাইস থেকে।" },
       { icon: "💺", title: "ভিড়ের অবস্থা", desc: "স্টপে যাওয়ার আগেই জেনে নিন বাসে বসার মতো জায়গা আছে কি না।" },
       { icon: "🔔", title: "স্মার্ট নোটিফিকেশন", desc: "বাসের বিলম্ব বা বিশেষ নোটিশের জন্য আর হোয়াটসঅ্যাপ-এর ওপর নির্ভর করতে হবে না; সরাসরি অ্যাপেই পান জরুরি আপডেট।" },
       { icon: "🧾", title: "তাৎক্ষণিক ফিডব্যাক", desc: "যাতায়াত সংক্রান্ত কোনো সমস্যা থাকলে সরাসরি অভিযোগ জানান এবং সমাধানের আপডেট ট্র্যাক করুন।" },
@@ -305,7 +306,6 @@ const RIKABI_TEMP = [
   { time: "01:35 PM", type: "arrival",   bus: "11-0900", driver: { en: "Farid", bn: "ফরিদ"  } },
 ];
 
-// Format bus number for display — keep ASCII for EN, convert digits for BN
 function formatBus(bus, lang) {
   if (lang === "en") return bus;
   return bus.replace(/[0-9]/g, d => "০১২৩৪৫৬৭৮৯"[d]);
