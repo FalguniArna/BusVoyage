@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// Helper: convert ASCII digits to Bengali digits
+// Helper: convert ASCII digits to Bengali digit
 function toBn(str) {
   return String(str).replace(/[0-9]/g, d => "০১২৩৪৫৬৭৮৯"[d]);
 }
