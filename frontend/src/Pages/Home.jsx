@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// Helper: convert ASCII digits to Bengali digits
+
 function toBn(str) {
   return String(str).replace(/[0-9]/g, d => "০১২৩৪৫৬৭৮৯"[d]);
 }
 
-// Helper: convert time string like "08:10 AM" to Bengali with সকাল/দুপুর/বিকাল/রাত
 function toBnTime(t) {
   if (!t || t === "—") return t;
 
