@@ -62,9 +62,9 @@ export default function BusTracking() {
             Auto-refreshes every 30s
           </p>
         </div>
-        <button style={styles.refreshBtn} onClick={fetchBuses}>
+        {/* <button style={styles.refreshBtn} onClick={fetchBuses}>
           ↻ Refresh now
-        </button>
+        </button> */}
       </div>
 
       {/* Status bar */}

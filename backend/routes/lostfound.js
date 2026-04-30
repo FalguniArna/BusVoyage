@@ -7,8 +7,9 @@ router.get('/', async (req, res) => {
     const items = await LostFound.find().sort({ createdAt: -1 });
     res.json(items);
   } catch (err) {
-    res.status(500).json({ message: "Server error" });
-  }
+    console.error("FULL BACKEND ERROR:", err); 
+    res.status(500).json({ message: "Server error", detail: err.message }); 
+}
 });
 
 router.post('/', async (req, res) => {
@@ -17,7 +18,8 @@ router.post('/', async (req, res) => {
     await item.save();
     res.status(201).json(item);
   } catch (err) {
-    res.status(500).json({ message: "Server error" });
+    console.error("FULL BACKEND ERROR:", err);
+    res.status(500).json({ message: "Server error", detail: err.message });
   }
 });
 
@@ -30,7 +32,8 @@ router.patch('/:id/status', async (req, res) => {
     );
     res.json(item);
   } catch (err) {
-    res.status(500).json({ message: "Server error" });
+    console.error("FULL BACKEND ERROR:", err);
+    res.status(500).json({ message: "Server error", detail: err.message });
   }
 });
 
