@@ -766,7 +766,7 @@ export default function Home() {
           <div style={s.galGrid} className="gal-grid">
             {GALLERY.slice(galSlide, galSlide + 3).map((src, i) => (
               <Reveal key={galSlide + i} delay={i * 0.07}>
-                <div style={{ ...s.galTile, backgroundImage: `url('${src}')` }} className="gal-tile" />
+                <img src={src} alt="Gallery" style={s.galTile} className="gal-tile" />
               </Reveal>
             ))}
           </div>
@@ -1004,7 +1004,7 @@ const s = {
 
   galSec:   { padding: "80px clamp(16px,6vw,80px)", background: "#000e22" },
   galGrid:  { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, maxWidth: 1200, margin: "0 auto" },
-  galTile:  { height: "clamp(160px,20vw,240px)", borderRadius: 16, backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#112244" },
+  galTile:  { height: "clamp(160px,20vw,240px)", width: "100%", borderRadius: 16, objectFit: "cover", backgroundColor: "#112244" },
   galArrow: { position: "absolute", top: "50%", transform: "translateY(-50%)", background: "#E31E24", color: "#fff", border: "none", width: 42, height: 42, borderRadius: "50%", cursor: "pointer", fontSize: 18, display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s" },
 
   impactSec:  { display: "flex", justifyContent: "space-around", flexWrap: "wrap", padding: "52px clamp(16px,6vw,80px)", background: "#0f172a", borderTop: "3px solid #f39c12" },
