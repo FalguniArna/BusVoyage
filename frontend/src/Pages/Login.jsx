@@ -21,9 +21,9 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       const role = res.data.user.role;
-      if (role === "student") navigate("/student-dashboard");
-      else if (role === "driver") navigate("/driver");
-      else if (role === "admin") navigate("/admin");
+      if (role === "student") navigate("/student-dashboard", { replace: true });
+      else if (role === "driver") navigate("/driver", { replace: true });
+      else if (role === "admin") navigate("/admin", { replace: true });
     } catch (err) {
       setError(err.response?.data?.message || "Invalid username or password.");
     } finally {
