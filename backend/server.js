@@ -12,7 +12,8 @@ app.use(cors({
   origin: [
     "http://localhost:5173", 
     "http://localhost:3000", 
-    "https://bus-voyage.vercel.app" 
+    "https://bus-voyage.vercel.app", 
+    "https://busvoyage.onrender.com"
   ],
   credentials: true
 }));
@@ -48,6 +49,10 @@ app.get('/api/test-db', async (req, res) => {
   const PreRegisteredStudent = require('./models/PreRegisteredStudent');
   const all = await PreRegisteredStudent.find({});
   res.json(all);
+});
+
+app.get('/ping', (req, res) => {
+  res.status(200).json({ message: "awake", time: new Date() });
 });
 
 const PORT = process.env.PORT || 5000;
